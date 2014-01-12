@@ -15,7 +15,13 @@ public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
+    public double SetLeft(double speed){
+      return;  
+    }
     
+    public double SetRight(double speed){
+        return;
+    }
     
 
     public void initDefaultCommand() {
