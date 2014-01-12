@@ -24,6 +24,7 @@ public class ToggleGathererOnOff extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        toggleOnOff();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -40,6 +41,7 @@ public class ToggleGathererOnOff extends CommandBase {
     protected void interrupted() {
     }
 
-    private void requires(Gatherer subGatherer) {
+    private void toggleOnOff() {
     }
+
 }
