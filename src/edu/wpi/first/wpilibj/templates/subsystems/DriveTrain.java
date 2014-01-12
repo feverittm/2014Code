@@ -16,11 +16,11 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
     
     public double SetLeft(double speed){
-      return;  
+       
     }
     
     public double SetRight(double speed){
-        return;
+      
     }
     
 
