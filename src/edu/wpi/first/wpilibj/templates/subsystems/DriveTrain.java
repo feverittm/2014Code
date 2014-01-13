@@ -15,12 +15,12 @@ public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
-    public double SetLeft(double speed){
-       
+    public void SetLeft(double speed){
+       throw new IndexOutOfBoundsException("not yet implemented");
     }
     
-    public double SetRight(double speed){
-      
+    public void SetRight(double speed){
+      throw new IndexOutOfBoundsException("not yet implemented");
     }
     
 

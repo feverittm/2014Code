@@ -41,10 +41,12 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
     public double getLeftSpeed(){
-        return;
+        throw new IndexOutOfBoundsException("not yet implemented");
+    
+        
     }
     public double getRightSpeed(){
-          return;
+          throw new IndexOutOfBoundsException("not yet implemented");
     }
           
 }
