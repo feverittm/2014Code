@@ -13,7 +13,7 @@ public class SetGear extends CommandBase {
     public SetGear() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(drivetrain);
+        requires(subDriveTrain);
     }
 
     // Called just before this Command runs the first time

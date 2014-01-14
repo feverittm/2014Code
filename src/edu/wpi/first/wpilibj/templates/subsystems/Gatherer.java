@@ -21,6 +21,11 @@ public class Gatherer extends Subsystem{
     private boolean isOn;
     private Victor myVictor;
     
+    public Gatherer(int intakeMotorSlot) {
+        myVictor = new Victor(intakeMotorSlot);
+    throw new IndexOutOfBoundsException("TODO need to finish");
+    }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

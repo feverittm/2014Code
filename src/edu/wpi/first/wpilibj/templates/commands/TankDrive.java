@@ -14,7 +14,7 @@ public class TankDrive extends CommandBase {
     public TankDrive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(drivetrain);
+        requires(subDriveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -23,8 +23,8 @@ public class TankDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-      drivetrain.SetLeft(oi.getLeftSpeed());
-      drivetrain.SetRight(oi.getRightSpeed());
+      subDriveTrain.SetLeft(oi.getLeftSpeed());
+      subDriveTrain.SetRight(oi.getRightSpeed());
         
     }
 
@@ -35,13 +35,13 @@ public class TankDrive extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
- //dklfjlkasjfg;klasdnf'kasndgpkawdnfgnk'    
+ 
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        drivetrain.SetLeft(0);
-        drivetrain.SetRight(0);
+        subDriveTrain.SetLeft(0);
+        subDriveTrain.SetRight(0);
     }
 }

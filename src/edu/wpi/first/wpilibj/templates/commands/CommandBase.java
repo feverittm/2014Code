@@ -3,6 +3,7 @@ package edu.wpi.first.wpilibj.templates.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.OI;
+import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.templates.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.templates.subsystems.Gatherer;
@@ -18,8 +19,12 @@ public abstract class CommandBase extends Command {
     public static OI oi;
     // Create a single static instance of all of your subsystems
     public static ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-    public static Gatherer subGatherer = new Gatherer();
-    public static DriveTrain drivetrain = new DriveTrain();
+    public static Gatherer subGatherer = new Gatherer(RobotMap.GathererWheelslot);
+    public static DriveTrain subDriveTrain = new DriveTrain(
+            RobotMap.leftEncoderSlot1,
+            RobotMap.leftEncoderSlot2,
+            RobotMap.rightEncoderSlot1,
+            RobotMap.rightEncoderSlot2);
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
