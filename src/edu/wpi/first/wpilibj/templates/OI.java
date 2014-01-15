@@ -1,6 +1,7 @@
 
 package edu.wpi.first.wpilibj.templates;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 
@@ -40,6 +41,11 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+   
+    Joystick Leftstick = new Joystick(1);
+    Joystick Rightstick = new Joystick(2);
+    Joystick Utilitystick = new Joystick(3);
+    
     public double getLeftSpeed(){
         throw new IndexOutOfBoundsException("not yet implemented");
     
