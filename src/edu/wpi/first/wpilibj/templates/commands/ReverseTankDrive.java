@@ -24,8 +24,8 @@ public class ReverseTankDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-      subDriveTrain.SetLeft(oi.getRightSpeed());  
-      subDriveTrain.SetRight(oi.getLeftSpeed());
+      subDriveTrain.SetLeft(-oi.getRightSpeed());  
+      subDriveTrain.SetRight(-oi.getLeftSpeed());
     }
 
     // Make this return true when this Command no longer needs to run execute()
