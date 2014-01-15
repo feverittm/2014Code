@@ -4,6 +4,10 @@ package edu.wpi.first.wpilibj.templates;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.templates.commands.ShooterCock;
+import edu.wpi.first.wpilibj.templates.commands.ShooterRelease;
+import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -41,18 +45,48 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+   private Button ShooterButton1;
+   private Button ShooterButton2;
+   private Button CockShooterButton;
    
-    Joystick Leftstick = new Joystick(1);
-    Joystick Rightstick = new Joystick(2);
-    Joystick Utilitystick = new Joystick(3);
+    
+    
+    private Joystick Leftstick;
+    private Joystick Rightstick ;   
+    private Joystick Utilitystick;
+    
+   
+    public OI(){
+        //Joystick layout
+        Joystick Leftstick = new Joystick(1);
+        Joystick Rightstick = new Joystick(2);
+        Joystick Utilitystick = new Joystick(3);
+        
+        
+        //Button layout
+        Button ShooterButton1 = new JoystickButton(Leftstick, 1);
+        Button ShooterButton2 = new JoystickButton(Rightstick, 1);
+        Button CockShooterButton = new JoystickButton(Utilitystick, 1);
+        
+        CockShooterButton.whenPressed(new ShooterCock());
+        ShooterButton1.whenPressed(new ShooterRelease());
+        ShooterButton2.whenPressed(new ShooterRelease());
+        
+        
+    
+}
+     
+   
+    
+    
     
     public double getLeftSpeed(){
-        throw new IndexOutOfBoundsException("not yet implemented");
+       return Leftstick.getY();
     
         
     }
     public double getRightSpeed(){
-          throw new IndexOutOfBoundsException("not yet implemented");
+          return Rightstick.getY();
     }
           
 }
