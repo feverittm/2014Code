@@ -4,13 +4,15 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
+
 /**
  *
  * @author 997robotics1
  */
 public class SetGear extends CommandBase {
-    
-    public SetGear() {
+    private double gear1;
+    public SetGear(double gear) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(subDriveTrain);
@@ -18,6 +20,7 @@ public class SetGear extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+       subDriveTrain.SetGear(gear1);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -26,7 +29,7 @@ public class SetGear extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
