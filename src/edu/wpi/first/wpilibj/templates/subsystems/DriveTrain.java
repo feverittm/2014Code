@@ -36,6 +36,10 @@ public class DriveTrain extends Subsystem {
       throw new IndexOutOfBoundsException("not yet implemented");
     }
     
+    public void SetGear(double gear){
+      throw new IndexOutOfBoundsException("not yet implemented");
+    }
+    
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
