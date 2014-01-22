@@ -19,11 +19,12 @@ public class RobotMap {
     public static final int LeftDriveslot = 1;
 public static final int RightDriveslot = 1;
 public static final int GathererWheelslot = 1;
-    public static double LeftEncoderDistancePerPulse;
-    public static double RightEncoderDistancePerPulse;
+    public static double LeftEncoderDistancePerPulse = 1;
+    public static double RightEncoderDistancePerPulse = 1;
     
-    public static final int leftEncoderSlot1;
-    public static final int leftEncoderSlot2;
-    public static final int rightEncoderSlot1;
-    public static final int rightEncoderSlot2;
+    public static final int leftEncoderSlot1 = 1;
+    public static final int leftEncoderSlot2 = 2;
+    public static final int rightEncoderSlot1 = 3;
+    public static final int rightEncoderSlot2 = 4;
+    public static double StartingGear = .5;
 }
