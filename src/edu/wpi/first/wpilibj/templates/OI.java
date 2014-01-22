@@ -3,11 +3,13 @@ package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.SetGear;
 import edu.wpi.first.wpilibj.templates.commands.ShooterCock;
 import edu.wpi.first.wpilibj.templates.commands.ShooterRelease;
-import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.templates.commands.ToggleGathererAngle;
+import edu.wpi.first.wpilibj.templates.commands.ToggleGathererOnOff;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -67,19 +69,39 @@ public class OI {
         Button ShooterButton1 = new JoystickButton(Leftstick, 1);
         Button ShooterButton2 = new JoystickButton(Rightstick, 1);
         Button CockShooterButton = new JoystickButton(Utilitystick, 1);
+        Button ToggleOnOffButton = new JoystickButton(Leftstick, 2);
+        Button ToggleGathererButton = new JoystickButton(Utilitystick, 2);
+        Button SetGear25Button = new JoystickButton(Utilitystick, 4);
+        Button SetGearHalfButton = new JoystickButton(Utilitystick, 5);
+        Button SetGear75Button = new JoystickButton(Utilitystick, 6);
+        Button SetGearFullButton = new JoystickButton(Utilitystick, 7);
         
+        //Button Ports
         CockShooterButton.whenPressed(new ShooterCock());
         ShooterButton1.whenPressed(new ShooterRelease());
         ShooterButton2.whenPressed(new ShooterRelease());
+        ToggleOnOffButton.whenPressed(new ToggleGathererOnOff());
+        ToggleGathererButton.whenPressed(new ToggleGathererAngle());
+        SetGear25Button.whenPressed(new SetGear(0.25));
+        SetGearFullButton.whenPressed(new SetGear(.5));
+        SetGear75Button.whenPressed(new SetGear(.75));
+        SetGearFullButton.whenPressed(new SetGear(1));
         
-        
-    
+        //SmartDashboard Buttons
+        SmartDashboard.putData("SetGearQuater: ", new SetGear(.25));
+        SmartDashboard.putData("SetGearHalf: ", new SetGear(.5));
+        SmartDashboard.putData("SetGear3/4: ", new SetGear(.75));
+        SmartDashboard.putData("setGearFull: ", new SetGear(1));
+        SmartDashboard.putData("CockShooter: ", new ShooterCock());
+        SmartDashboard.putData("RelesaseShooter: ", new ShooterRelease());
+        SmartDashboard.putData("ToggleGathererAngle: ", new ToggleGathererAngle());
+        SmartDashboard.putData("ToggleGathererOnOff: ", new ToggleGathererOnOff());
 }
      
    
     
     
-    
+    //Joystick Get y angle
     public double getLeftSpeed(){
        return Leftstick.getY();
     
