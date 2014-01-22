@@ -11,8 +11,9 @@ import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
  * @author 997robotics1
  */
 public class SetGear extends CommandBase {
-    private double gear1;
+    private double gear;
     public SetGear(double gear) {
+        this.gear = gear;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(subDriveTrain);
@@ -20,7 +21,7 @@ public class SetGear extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-       subDriveTrain.SetGear(gear1);
+       subDriveTrain.SetGear(gear);
     }
 
     // Called repeatedly when this Command is scheduled to run

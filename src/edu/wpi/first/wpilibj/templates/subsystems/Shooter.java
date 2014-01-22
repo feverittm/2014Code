@@ -16,14 +16,14 @@ public class Shooter extends Subsystem {
     // here. Call these from Commands.
     private Victor myVictor;
     
-     public Shooter(int shooterSlot) {
-         myVictor = new Victor(shooterSlot);
-     }
+     public Shooter() {
+        }
     public void shooterCock() {
+        throw new IndexOutOfBoundsException("not yet implemented");
     
 }
     public void shooterRelease() {
-        
+        throw new IndexOutOfBoundsException("not yet implemented"); 
     }
     
 

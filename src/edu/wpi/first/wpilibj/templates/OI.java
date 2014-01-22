@@ -49,7 +49,13 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
    private Button ShooterButton1;
    private Button ShooterButton2;
-   private Button CockShooterButton;
+   private Button CockShooterButton; 
+   private Button ToggleOnOffButton;
+   private Button ToggleGathererButton;
+   private Button SetGearQuarterButton;
+   private Button SetGearHalfButton;
+   private Button SetGear75Button;
+   private Button SetGearFullButton;
    
     
     
@@ -60,21 +66,21 @@ public class OI {
    
     public OI(){
         //Joystick layout
-        Joystick Leftstick = new Joystick(1);
-        Joystick Rightstick = new Joystick(2);
-        Joystick Utilitystick = new Joystick(3);
+        Leftstick = new Joystick(1);
+        Rightstick = new Joystick(2);
+        Utilitystick = new Joystick(3);
         
         
         //Button layout
-        Button ShooterButton1 = new JoystickButton(Leftstick, 1);
-        Button ShooterButton2 = new JoystickButton(Rightstick, 1);
-        Button CockShooterButton = new JoystickButton(Utilitystick, 1);
-        Button ToggleOnOffButton = new JoystickButton(Leftstick, 2);
-        Button ToggleGathererButton = new JoystickButton(Utilitystick, 2);
-        Button SetGear25Button = new JoystickButton(Utilitystick, 4);
-        Button SetGearHalfButton = new JoystickButton(Utilitystick, 5);
-        Button SetGear75Button = new JoystickButton(Utilitystick, 6);
-        Button SetGearFullButton = new JoystickButton(Utilitystick, 7);
+       ShooterButton1 = new JoystickButton(Leftstick, 1);
+       ShooterButton2 = new JoystickButton(Rightstick, 1);
+       CockShooterButton = new JoystickButton(Utilitystick, 1);
+       ToggleOnOffButton = new JoystickButton(Leftstick, 2);
+       ToggleGathererButton = new JoystickButton(Utilitystick, 2);
+       SetGearQuarterButton = new JoystickButton(Utilitystick, 4);
+       SetGearHalfButton = new JoystickButton(Utilitystick, 5);
+       SetGear75Button = new JoystickButton(Utilitystick, 6);
+       SetGearFullButton = new JoystickButton(Utilitystick, 7);
         
         //Button Ports
         CockShooterButton.whenPressed(new ShooterCock());
@@ -82,7 +88,7 @@ public class OI {
         ShooterButton2.whenPressed(new ShooterRelease());
         ToggleOnOffButton.whenPressed(new ToggleGathererOnOff());
         ToggleGathererButton.whenPressed(new ToggleGathererAngle());
-        SetGear25Button.whenPressed(new SetGear(0.25));
+        SetGearQuarterButton.whenPressed(new SetGear(0.25));
         SetGearFullButton.whenPressed(new SetGear(.5));
         SetGear75Button.whenPressed(new SetGear(.75));
         SetGearFullButton.whenPressed(new SetGear(1));

@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.templates.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.templates.subsystems.Gatherer;
+import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -27,6 +28,7 @@ public abstract class CommandBase extends Command {
             RobotMap.rightEncoderSlot2,
             RobotMap.LeftDriveslot,
             RobotMap.RightDriveslot);
+    public static Shooter subShooter = new Shooter();
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
