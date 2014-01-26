@@ -18,6 +18,8 @@ public class RobotMap extends RobotMapC {
     public static final int leftEncoderSlot2 = DigitalIO_2;
     public static final int rightEncoderSlot1 = DigitalIO_3;
     public static final int rightEncoderSlot2 = DigitalIO_4;
+    public static final int GathererExtendSlot = Pnuematics1;
+    public static final int GathererRetractSlot = Pnuematics2;
      
     //non-slot constants
     public static final double StartingGear = .5;
