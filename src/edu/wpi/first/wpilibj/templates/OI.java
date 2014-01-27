@@ -5,9 +5,11 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.ReverseTankDrive;
 import edu.wpi.first.wpilibj.templates.commands.SetGear;
 import edu.wpi.first.wpilibj.templates.commands.ShooterCock;
 import edu.wpi.first.wpilibj.templates.commands.ShooterRelease;
+import edu.wpi.first.wpilibj.templates.commands.TankDrive;
 import edu.wpi.first.wpilibj.templates.commands.ToggleGathererAngle;
 import edu.wpi.first.wpilibj.templates.commands.ToggleGathererOnOff;
 
@@ -56,12 +58,14 @@ public class OI {
    private Button SetGearHalfButton;
    private Button SetGear75Button;
    private Button SetGearFullButton;
-   
+   private final JoystickButton ReverseDriveButton;
+   private final JoystickButton TankDriveButton;
     
     
     private Joystick Leftstick;
     private Joystick Rightstick ;   
     private Joystick Utilitystick;
+    
     
    
     public OI(){
@@ -81,8 +85,11 @@ public class OI {
        SetGearHalfButton = new JoystickButton(Utilitystick, 5);
        SetGear75Button = new JoystickButton(Utilitystick, 6);
        SetGearFullButton = new JoystickButton(Utilitystick, 7);
+       ReverseDriveButton = new JoystickButton(Utilitystick, 8);
+       TankDriveButton = new JoystickButton(Utilitystick, 9);
+       
         
-        //Button Ports
+        //Button Triggers
         CockShooterButton.whenPressed(new ShooterCock());
         ShooterButton1.whenPressed(new ShooterRelease());
         ShooterButton2.whenPressed(new ShooterRelease());
@@ -92,16 +99,20 @@ public class OI {
         SetGearFullButton.whenPressed(new SetGear(.5));
         SetGear75Button.whenPressed(new SetGear(.75));
         SetGearFullButton.whenPressed(new SetGear(1));
+        TankDriveButton.whenPressed(new TankDrive());
+        ReverseDriveButton.whenPressed(new ReverseTankDrive());
         
         //SmartDashboard Buttons
-        SmartDashboard.putData("SetGearQuater: ", new SetGear(.25));
-        SmartDashboard.putData("SetGearHalf: ", new SetGear(.5));
-        SmartDashboard.putData("SetGear3/4: ", new SetGear(.75));
-        SmartDashboard.putData("setGearFull: ", new SetGear(1));
-        SmartDashboard.putData("CockShooter: ", new ShooterCock());
-        SmartDashboard.putData("RelesaseShooter: ", new ShooterRelease());
-        SmartDashboard.putData("ToggleGathererAngle: ", new ToggleGathererAngle());
-        SmartDashboard.putData("ToggleGathererOnOff: ", new ToggleGathererOnOff());
+        SmartDashboard.putData("Set Gear Quarter: ", new SetGear(.25));
+        SmartDashboard.putData("Set Gear Half: ", new SetGear(.5));
+        SmartDashboard.putData("Set Gear 3/4: ", new SetGear(.75));
+        SmartDashboard.putData("set Gear Full: ", new SetGear(1));
+        SmartDashboard.putData("Cock Shooter: ", new ShooterCock());
+        SmartDashboard.putData("Relesase Shooter: ", new ShooterRelease());
+        SmartDashboard.putData("Toggle Gatherer Angle: ", new ToggleGathererAngle());
+        SmartDashboard.putData("Toggle Gatherer On/Off: ", new ToggleGathererOnOff());
+        SmartDashboard.putData("normal drive", new TankDrive());
+        SmartDashboard.putData("Reverse Drive",new ReverseTankDrive());
 }
      
    
