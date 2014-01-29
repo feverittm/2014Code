@@ -33,18 +33,18 @@ public class SuperSpeedController {
   
     private Timer myTimer = new Timer ();
     private TimerTask myTimerTask = new TimerTask() {
-
+        private double maxAccel = .01;
         public void run() {
          if (desiredSpeed > currentSpeed){
-             if(desiredSpeed - currentSpeed> .01){
-                 currentSpeed +=.01;
+             if(desiredSpeed - currentSpeed> maxAccel){
+                 currentSpeed +=maxAccel;
              } else {
                  currentSpeed = desiredSpeed;
              }
             
          } else if (desiredSpeed < currentSpeed) {
-             if (currentSpeed - desiredSpeed>.1){
-                 currentSpeed -= .01;
+             if (currentSpeed - desiredSpeed>maxAccel){
+                 currentSpeed -= maxAccel;
              }
          }
          mySpeedController.set(currentSpeed);
