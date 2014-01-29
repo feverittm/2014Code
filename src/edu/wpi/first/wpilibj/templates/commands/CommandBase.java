@@ -20,7 +20,7 @@ public abstract class CommandBase extends Command {
 
     public static OI oi;
     // Create a single static instance of all of your subsystems
-    public static Gatherer subGatherer = new Gatherer(RobotMap.GathererWheelslot);
+    public static Gatherer subGatherer = new Gatherer(RobotMap.GathererWheelslot,RobotMap.GathererExtendSlot,RobotMap.GathererRetractSlot);
     public static DriveTrain subDriveTrain = new DriveTrain(
             RobotMap.leftEncoderSlot1,
             RobotMap.leftEncoderSlot2,

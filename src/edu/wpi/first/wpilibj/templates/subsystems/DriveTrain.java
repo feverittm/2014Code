@@ -5,9 +5,9 @@
  */
 package edu.wpi.first.wpilibj.templates.subsystems;
 
+import PersonaClassesl.SuperSpeedController;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.TankDrive;
@@ -23,8 +23,8 @@ public class DriveTrain extends Subsystem {
  
     private Encoder leftEncoder;
     private Encoder rightEncoder;
-    private SpeedController leftMotor;
-    private SpeedController rightMotor;
+    private SuperSpeedController leftMotor;
+    private SuperSpeedController rightMotor;
     
     private double gear;
 
@@ -33,8 +33,8 @@ public class DriveTrain extends Subsystem {
         rightEncoder = new Encoder(leftEncoderSlot1,leftEncoderSlot2);
         leftEncoder.setDistancePerPulse(RobotMap.LeftEncoderDistancePerPulse);
         rightEncoder.setDistancePerPulse(RobotMap.RightEncoderDistancePerPulse);
-        leftMotor = new Victor(leftMotorSlot);
-        rightMotor = new Victor(rightMotorSlot);
+        leftMotor = new SuperSpeedController(new Talon(leftMotorSlot));
+        rightMotor = new SuperSpeedController(new Talon(rightMotorSlot));
         gear = RobotMap.StartingGear;
     }
     public void SetLeft(double speed){

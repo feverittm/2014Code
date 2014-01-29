@@ -6,8 +6,10 @@
 
 package edu.wpi.first.wpilibj.templates.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
  *
@@ -20,10 +22,11 @@ public class Gatherer extends Subsystem{
     // here. Call these from Commands.
     private boolean isOn;
     private Victor myVictor;
+    private DoubleSolenoid Actuator;
     
-    public Gatherer(int intakeMotorSlot) {
+    public Gatherer(int intakeMotorSlot,int extendSolenoidSlot, int RetractSolenoidSlot) {
+        Actuator = new DoubleSolenoid(extendSolenoidSlot,RetractSolenoidSlot);
         myVictor = new Victor(intakeMotorSlot);
-    throw new IndexOutOfBoundsException("TODO need to finish");
     }
     
     public void initDefaultCommand() {
@@ -51,12 +54,12 @@ public class Gatherer extends Subsystem{
     private void extendGatherer() {
        //extend
         isExtended = true;
-        throw new IndexOutOfBoundsException("not yet implemented");
+        Actuator.set(DoubleSolenoid.Value.kForward);
     }
     private void retractGatherer() {
         //retract
         isExtended = false;
-        throw new IndexOutOfBoundsException("not yet implemented");
+        Actuator.set(DoubleSolenoid.Value.kReverse);
     }
     private void turnOnGather() {
         myVictor.set(1);
