@@ -9,9 +9,9 @@ package edu.wpi.first.wpilibj.templates.commands;
  *
  * @author 997robotics3
  */
-public class ShooterCock extends CommandBase {
+public class PrepShooter extends CommandBase {
     
-    public ShooterCock() {
+    public PrepShooter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(subShooter);

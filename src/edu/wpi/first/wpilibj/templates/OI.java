@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.SetGear;
-import edu.wpi.first.wpilibj.templates.commands.ShooterCock;
+import edu.wpi.first.wpilibj.templates.commands.PrepShooter;
 import edu.wpi.first.wpilibj.templates.commands.ShooterRelease;
 import edu.wpi.first.wpilibj.templates.commands.ToggleGathererAngle;
 import edu.wpi.first.wpilibj.templates.commands.ToggleGathererOnOff;
@@ -83,7 +83,7 @@ public class OI {
        SetGearFullButton = new JoystickButton(Utilitystick, 7);
         
         //Button Ports
-        CockShooterButton.whenPressed(new ShooterCock());
+        CockShooterButton.whenPressed(new PrepShooter());
         ShooterButton1.whenPressed(new ShooterRelease());
         ShooterButton2.whenPressed(new ShooterRelease());
         ToggleOnOffButton.whenPressed(new ToggleGathererOnOff());
@@ -98,7 +98,7 @@ public class OI {
         SmartDashboard.putData("SetGearHalf: ", new SetGear(.5));
         SmartDashboard.putData("SetGear3/4: ", new SetGear(.75));
         SmartDashboard.putData("setGearFull: ", new SetGear(1));
-        SmartDashboard.putData("CockShooter: ", new ShooterCock());
+        SmartDashboard.putData("CockShooter: ", new PrepShooter());
         SmartDashboard.putData("RelesaseShooter: ", new ShooterRelease());
         SmartDashboard.putData("ToggleGathererAngle: ", new ToggleGathererAngle());
         SmartDashboard.putData("ToggleGathererOnOff: ", new ToggleGathererOnOff());
