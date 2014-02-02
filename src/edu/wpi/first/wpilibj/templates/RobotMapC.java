@@ -37,14 +37,14 @@ class RobotMapC {
     static final int DigitalIO_3 = 3;
     static final int DigitalIO_4 = 4;
     static final int DigitalIO_5 = 5;
-    static final int DigitalIO_6= 6;
+    static final int DigitalIO_6 = 6;
     static final int DigitalIO_7 = 7;
     static final int DigitalIO_8 = 8;
     static final int DigitalIO_9 = 9;
     static final int DigitalIO_10 = 10;
     static final int DigitalIO_11 = 11;
     static final int DigitalIO_12 = 12;
-    static final int DigitalIO_13= 13;
+    static final int DigitalIO_13 = 13;
     static final int DigitalIO_14 = 14;
     static final int Relay1 = 1;
     static final int Relay2 = 2;

@@ -30,7 +30,7 @@ public class DriveTrain extends Subsystem {
 
     public DriveTrain(int leftEncoderSlot1,int leftEncoderSlot2, int rightEncoderSlot1, int rightEncoderSlot2, int leftMotorSlot, int rightMotorSlot) {
         leftEncoder = new Encoder(leftEncoderSlot1,leftEncoderSlot2);
-        rightEncoder = new Encoder(leftEncoderSlot1,leftEncoderSlot2);
+        rightEncoder = new Encoder(rightEncoderSlot1,rightEncoderSlot2);
         leftEncoder.setDistancePerPulse(RobotMap.LeftEncoderDistancePerPulse);
         rightEncoder.setDistancePerPulse(RobotMap.RightEncoderDistancePerPulse);
         leftMotor = new SuperSpeedController(new Talon(leftMotorSlot));
