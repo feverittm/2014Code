@@ -9,6 +9,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
@@ -26,7 +27,9 @@ public class Gatherer extends Subsystem{
     
     public Gatherer(int intakeMotorSlot,int extendSolenoidSlot, int RetractSolenoidSlot) {
         Actuator = new DoubleSolenoid(extendSolenoidSlot,RetractSolenoidSlot);
+        LiveWindow.addActuator("Gatherer", "solenoid", Actuator);
         myVictor = new Victor(intakeMotorSlot);
+        LiveWindow.addActuator("Gatherer", "motor", myVictor);
     }
     
     public void initDefaultCommand() {
@@ -51,12 +54,12 @@ public class Gatherer extends Subsystem{
         }
         
     }
-    private void extendGatherer() {
+    public void extendGatherer() {
        //extend
         isExtended = true;
         Actuator.set(DoubleSolenoid.Value.kForward);
     }
-    private void retractGatherer() {
+    public void retractGatherer() {
         //retract
         isExtended = false;
         Actuator.set(DoubleSolenoid.Value.kReverse);
@@ -68,6 +71,9 @@ public class Gatherer extends Subsystem{
     private void turnOffGather() {
         myVictor.set(0);
         isOn = false;
+    }
+    public boolean getIsExtended() {
+        return isExtended;
     }
     
     

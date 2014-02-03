@@ -1,6 +1,7 @@
 
 package edu.wpi.first.wpilibj.templates;
 
+import PersonaClassesl.Joystick997;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -8,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.ReverseTankDrive;
 import edu.wpi.first.wpilibj.templates.commands.SetGear;
 import edu.wpi.first.wpilibj.templates.commands.PrepShooter;
-import edu.wpi.first.wpilibj.templates.commands.ShooterRelease;
+import edu.wpi.first.wpilibj.templates.commands.Shoot;
 import edu.wpi.first.wpilibj.templates.commands.TankDrive;
 import edu.wpi.first.wpilibj.templates.commands.ToggleGathererAngle;
 import edu.wpi.first.wpilibj.templates.commands.ToggleGathererOnOff;
@@ -18,37 +19,6 @@ import edu.wpi.first.wpilibj.templates.commands.ToggleGathererOnOff;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    //// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
-    // Joystick stick = new Joystick(port);
-    // Button button = new JoystickButton(stick, buttonNumber);
-    
-    // Another type of button you can create is a DigitalIOButton, which is
-    // a button or switch hooked up to the cypress module. These are useful if
-    // you want to build a customized operator interface.
-    // Button button = new DigitalIOButton(1);
-    
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
-    
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
-    
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
-    
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-    
-    // Start the command when the button is released  and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
    private Button ShooterButton1;
    private Button ShooterButton2;
    private Button CockShooterButton; 
@@ -70,9 +40,9 @@ public class OI {
    
     public OI(){
         //Joystick layout
-        Leftstick = new Joystick(1);
-        Rightstick = new Joystick(2);
-        Utilitystick = new Joystick(3);
+        Leftstick = new Joystick997(1);
+        Rightstick = new Joystick997(2);
+        Utilitystick = new Joystick997(3);
         
         
         //Button layout
@@ -90,9 +60,9 @@ public class OI {
        
         
         //Button Ports
-        CockShooterButton.whenPressed(new PrepShooter());
-        ShooterButton1.whenPressed(new ShooterRelease());
-        ShooterButton2.whenPressed(new ShooterRelease());
+        CockShooterButton.whenPressed(new PrepShooter(RobotMap.DefaultSetPointForTheShooter));
+        ShooterButton1.whenPressed(new Shoot());
+        ShooterButton2.whenPressed(new Shoot());
         ToggleOnOffButton.whenPressed(new ToggleGathererOnOff());
         ToggleGathererButton.whenPressed(new ToggleGathererAngle());
         SetGearQuarterButton.whenPressed(new SetGear(0.25));
@@ -107,8 +77,8 @@ public class OI {
         SmartDashboard.putData("Set Gear Half: ", new SetGear(.5));
         SmartDashboard.putData("Set Gear 3/4: ", new SetGear(.75));
         SmartDashboard.putData("set Gear Full: ", new SetGear(1));
-        SmartDashboard.putData("Cock Shooter: ", new PrepShooter());
-        SmartDashboard.putData("Relesase Shooter: ", new ShooterRelease());
+        SmartDashboard.putData("Cock Shooter: ", new PrepShooter(RobotMap.DefaultSetPointForTheShooter));
+        SmartDashboard.putData("Relesase Shooter: ", new Shoot());
         SmartDashboard.putData("Toggle Gatherer Angle: ", new ToggleGathererAngle());
         SmartDashboard.putData("Toggle Gatherer On/Off: ", new ToggleGathererOnOff());
         SmartDashboard.putData("normal drive", new TankDrive());

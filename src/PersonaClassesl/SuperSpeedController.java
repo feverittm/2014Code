@@ -8,6 +8,8 @@ package PersonaClassesl;
 
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
+import edu.wpi.first.wpilibj.tables.ITable;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,7 +17,7 @@ import java.util.TimerTask;
  *
  * @author 997robotics4
  */
-public class SuperSpeedController {
+public class SuperSpeedController implements SpeedController{
     private double desiredSpeed;
     private double currentSpeed;
     private SpeedController mySpeedController;
@@ -29,6 +31,9 @@ public class SuperSpeedController {
     
   public void set(double a) {
       desiredSpeed = a;
+  }
+  public SpeedController getSpeedController() {
+      return mySpeedController;
   }
   
     private Timer myTimer = new Timer ();
@@ -50,5 +55,21 @@ public class SuperSpeedController {
          mySpeedController.set(currentSpeed);
         }
     };
+
+    public double get() {
+        return currentSpeed;
+    }
+
+    public void set(double d, byte b) {
+        mySpeedController.set(d, b);
+    }
+
+    public void disable() {
+    mySpeedController.disable();
+    }
+
+    public void pidWrite(double d) {
+        mySpeedController.pidWrite(d);
+    }
     
 }

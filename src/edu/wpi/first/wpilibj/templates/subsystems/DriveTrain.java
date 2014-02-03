@@ -9,6 +9,7 @@ import PersonaClassesl.SuperSpeedController;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.TankDrive;
 
@@ -30,11 +31,15 @@ public class DriveTrain extends Subsystem {
 
     public DriveTrain(int leftEncoderSlot1,int leftEncoderSlot2, int rightEncoderSlot1, int rightEncoderSlot2, int leftMotorSlot, int rightMotorSlot) {
         leftEncoder = new Encoder(leftEncoderSlot1,leftEncoderSlot2);
+        LiveWindow.addSensor("Drive Train", "left encoder", leftEncoder);
         rightEncoder = new Encoder(rightEncoderSlot1,rightEncoderSlot2);
+        LiveWindow.addSensor("Drive Train", "right encoder",rightEncoder);
         leftEncoder.setDistancePerPulse(RobotMap.LeftEncoderDistancePerPulse);
         rightEncoder.setDistancePerPulse(RobotMap.RightEncoderDistancePerPulse);
         leftMotor = new SuperSpeedController(new Talon(leftMotorSlot));
+        LiveWindow.addActuator("drive train", "left motor", (Talon) leftMotor.getSpeedController());
         rightMotor = new SuperSpeedController(new Talon(rightMotorSlot));
+        LiveWindow.addActuator("drive train", "right motor", (Talon) rightMotor.getSpeedController());
         gear = RobotMap.StartingGear;
     }
     public void SetLeft(double speed){

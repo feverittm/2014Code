@@ -13,14 +13,19 @@ import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
  * CommandBase stores creates and stores each control system. To access a
- * subsystem elsewhere in your code in your code use CommandBase.exampleSubsystem
+ * subsystem elsewhere in your code in your code use
+ * CommandBase.exampleSubsystem
+ *
  * @author Author
  */
 public abstract class CommandBase extends Command {
 
     public static OI oi;
     // Create a single static instance of all of your subsystems
-    public static Gatherer subGatherer = new Gatherer(RobotMap.GathererWheelslot,RobotMap.GathererExtendSlot,RobotMap.GathererRetractSlot);
+    public static Gatherer subGatherer = new Gatherer(
+            RobotMap.GathererWheelslot, 
+            RobotMap.GathererExtendSlot, 
+            RobotMap.GathererRetractSlot);
     public static DriveTrain subDriveTrain = new DriveTrain(
             RobotMap.leftEncoderSlot1,
             RobotMap.leftEncoderSlot2,
@@ -28,8 +33,15 @@ public abstract class CommandBase extends Command {
             RobotMap.rightEncoderSlot2,
             RobotMap.LeftDriveslot,
             RobotMap.RightDriveslot);
-    public static Shooter subShooter = new Shooter();
+    public static Shooter subShooter = new Shooter(
+            RobotMap.Whintchslot,
+            RobotMap.ShooterEncoderslot,
+            RobotMap.ShooterEncoderslot2,
+            RobotMap.LimitSwitchslot,
+            RobotMap.LatchPunematicslot1,
+            RobotMap.LatchPunematicslot2);
     public static Aimer myAimer = new Aimer();
+
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
@@ -39,7 +51,6 @@ public abstract class CommandBase extends Command {
         oi = new OI();
 
         // Show what command your subsystem is running on the SmartDashboard
-       
     }
 
     public CommandBase(String name) {
