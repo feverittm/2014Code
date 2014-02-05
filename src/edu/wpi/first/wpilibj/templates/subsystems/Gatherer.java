@@ -7,10 +7,12 @@
 package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import java.util.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.templates.RobotMap;
+import java.util.TimerTask;
 
 /**
  *
@@ -24,7 +26,13 @@ public class Gatherer extends Subsystem{
     private boolean isOn;
     private Victor myVictor;
     private DoubleSolenoid Actuator;
-    
+    public Timer myTimer = new Timer();
+    public TimerTask myTimerTask = new TimerTask() {
+
+        public void run() {
+      retractGatherer();
+        }
+    };
     public Gatherer(int intakeMotorSlot,int extendSolenoidSlot, int RetractSolenoidSlot) {
         Actuator = new DoubleSolenoid(extendSolenoidSlot,RetractSolenoidSlot);
         LiveWindow.addActuator("Gatherer", "solenoid", Actuator);
@@ -58,22 +66,34 @@ public class Gatherer extends Subsystem{
        //extend
         isExtended = true;
         Actuator.set(DoubleSolenoid.Value.kForward);
+        turnOnGather();
     }
+    
+    public void upIn1Second() {
+        myTimer.schedule(null,1000);
+    }
+    
     public void retractGatherer() {
         //retract
         isExtended = false;
         Actuator.set(DoubleSolenoid.Value.kReverse);
+        turnOffGather();
     }
-    private void turnOnGather() {
+    public void turnOnGather() {
         myVictor.set(1);
         isOn = true;
     }
-    private void turnOffGather() {
+    public void turnOffGather() {
         myVictor.set(0);
         isOn = false;
     }
     public boolean getIsExtended() {
         return isExtended;
+    }
+
+    public void turnOnGatherReverse() {
+        myVictor.set(-1);
+        isOn = true;
     }
     
     

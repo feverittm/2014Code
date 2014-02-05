@@ -65,7 +65,9 @@ public class Shooter extends Subsystem {
     public void disable(){
         myPIDController.disable();
     }
-    
+    public boolean getPIDFin(){
+        return myPIDController.onTarget();
+    }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

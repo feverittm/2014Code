@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.templates.commands.ReverseTankDrive;
 import edu.wpi.first.wpilibj.templates.commands.SetGear;
 import edu.wpi.first.wpilibj.templates.commands.PrepShooter;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
+import edu.wpi.first.wpilibj.templates.commands.SpitBall;
 import edu.wpi.first.wpilibj.templates.commands.TankDrive;
 import edu.wpi.first.wpilibj.templates.commands.ToggleGathererAngle;
 import edu.wpi.first.wpilibj.templates.commands.ToggleGathererOnOff;
@@ -19,22 +20,19 @@ import edu.wpi.first.wpilibj.templates.commands.ToggleGathererOnOff;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-   private Button ShooterButton1;
-   private Button ShooterButton2;
-   private Button CockShooterButton; 
-   private Button ToggleOnOffButton;
-   private Button ToggleGathererButton;
-   private Button SetGearQuarterButton;
-   private Button SetGearHalfButton;
-   private Button SetGear75Button;
-   private Button SetGearFullButton;
+   private final Button ShooterButton1;
+   private final Button ShooterButton2;
+   private final Button CockShooterButton;
+   private final Button ToggleGathererButton;
+   private final Button ToggleGathererButton2;
    private final JoystickButton ReverseDriveButton;
    private final JoystickButton TankDriveButton;
+    private final JoystickButton SpitBallButton;
+    private final JoystickButton SpitBallButton1;
     
-    
-    private Joystick Leftstick;
-    private Joystick Rightstick ;   
-    private Joystick Utilitystick;
+    private final Joystick Leftstick;
+    private final Joystick Rightstick ;   
+    private final Joystick Utilitystick;
     
     
    
@@ -48,36 +46,29 @@ public class OI {
         //Button layout
        ShooterButton1 = new JoystickButton(Leftstick, 1);
        ShooterButton2 = new JoystickButton(Rightstick, 1);
-       CockShooterButton = new JoystickButton(Utilitystick, 1);
-       ToggleOnOffButton = new JoystickButton(Leftstick, 2);
-       ToggleGathererButton = new JoystickButton(Utilitystick, 2);
-       SetGearQuarterButton = new JoystickButton(Utilitystick, 4);
-       SetGearHalfButton = new JoystickButton(Utilitystick, 5);
-       SetGear75Button = new JoystickButton(Utilitystick, 6);
-       SetGearFullButton = new JoystickButton(Utilitystick, 7);
-       ReverseDriveButton = new JoystickButton(Utilitystick, 8);
-       TankDriveButton = new JoystickButton(Utilitystick, 9);
+       CockShooterButton = new JoystickButton(Utilitystick, 1); 
+       ToggleGathererButton = new JoystickButton(Leftstick, 2);
+       ToggleGathererButton2 = new JoystickButton(Rightstick,2);
+       ReverseDriveButton = new JoystickButton(Rightstick, 8);
+       TankDriveButton = new JoystickButton(Rightstick, 9);
+       SpitBallButton = new JoystickButton(Leftstick, 3);
+       SpitBallButton1 = new JoystickButton(Rightstick, 3);
        
-        
+       
         //Button Ports
         CockShooterButton.whenPressed(new PrepShooter(RobotMap.DefaultSetPointForTheShooter));
         ShooterButton1.whenPressed(new Shoot());
         ShooterButton2.whenPressed(new Shoot());
-        ToggleOnOffButton.whenPressed(new ToggleGathererOnOff());
         ToggleGathererButton.whenPressed(new ToggleGathererAngle());
-        SetGearQuarterButton.whenPressed(new SetGear(0.25));
-        SetGearFullButton.whenPressed(new SetGear(.5));
-        SetGear75Button.whenPressed(new SetGear(.75));
-        SetGearFullButton.whenPressed(new SetGear(1));
+        ToggleGathererButton2.whenPressed(new ToggleGathererAngle());
         TankDriveButton.whenPressed(new TankDrive());
         ReverseDriveButton.whenPressed(new ReverseTankDrive());
+        SpitBallButton.whenPressed(new SpitBall());
+        SpitBallButton1.whenPressed(new SpitBall());
         
+
         //SmartDashboard Buttons
-        SmartDashboard.putData("Set Gear Quarter: ", new SetGear(.25));
-        SmartDashboard.putData("Set Gear Half: ", new SetGear(.5));
-        SmartDashboard.putData("Set Gear 3/4: ", new SetGear(.75));
-        SmartDashboard.putData("set Gear Full: ", new SetGear(1));
-        SmartDashboard.putData("Cock Shooter: ", new PrepShooter(RobotMap.DefaultSetPointForTheShooter));
+        SmartDashboard.putData("Winch Shooter: ", new PrepShooter(RobotMap.DefaultSetPointForTheShooter));
         SmartDashboard.putData("Relesase Shooter: ", new Shoot());
         SmartDashboard.putData("Toggle Gatherer Angle: ", new ToggleGathererAngle());
         SmartDashboard.putData("Toggle Gatherer On/Off: ", new ToggleGathererOnOff());

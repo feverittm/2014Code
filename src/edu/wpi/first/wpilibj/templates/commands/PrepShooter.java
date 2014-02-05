@@ -15,8 +15,10 @@ public class PrepShooter extends CommandGroup {
     
     public PrepShooter(double setPoint) {
         addSequential(new retractGatherer());
+        addSequential (new gathererWheelsIn());
         addSequential(new cockShooter());
         addSequential(new WinchToSetpoint(setPoint));
+     
         
     }
 }

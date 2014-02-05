@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.templates.subsystems.Gatherer;
 import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
+import edu.wpi.first.wpilibj.templates.subsystems.subcompressor;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -23,8 +24,8 @@ public abstract class CommandBase extends Command {
     public static OI oi;
     // Create a single static instance of all of your subsystems
     public static Gatherer subGatherer = new Gatherer(
-            RobotMap.GathererWheelslot, 
-            RobotMap.GathererExtendSlot, 
+            RobotMap.GathererWheelslot,
+            RobotMap.GathererExtendSlot,
             RobotMap.GathererRetractSlot);
     public static DriveTrain subDriveTrain = new DriveTrain(
             RobotMap.leftEncoderSlot1,
@@ -41,6 +42,9 @@ public abstract class CommandBase extends Command {
             RobotMap.LatchPunematicslot1,
             RobotMap.LatchPunematicslot2);
     public static Aimer myAimer = new Aimer();
+    public static subcompressor subCompressor = new subcompressor(
+            RobotMap.compressorSwitchSlot,
+            RobotMap.compressorSpikeSlot);
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
