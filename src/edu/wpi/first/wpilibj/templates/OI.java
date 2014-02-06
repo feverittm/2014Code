@@ -81,12 +81,16 @@ public class OI {
     
     //Joystick Get y angle
     public double getLeftSpeed(){
-       return Leftstick.getY();
+       return -Leftstick.getY();
     
         
     }
     public double getRightSpeed(){
-          return Rightstick.getY();
+          return -Rightstick.getY();
+    }
+    public void SmartDashboard() {
+        SmartDashboard.putNumber("joystick left Y value", getLeftSpeed());
+        SmartDashboard.putNumber("joystick right Y value", getRightSpeed());
     }
           
 }

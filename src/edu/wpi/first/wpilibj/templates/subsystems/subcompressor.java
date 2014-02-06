@@ -7,6 +7,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -33,6 +34,7 @@ public class subcompressor extends Subsystem {
             stopCompressor();
         }
     };
+    private boolean isOn;
 
     public subcompressor(int compressorSwitchSlot, int compressorSpikeSlot) {
         myCompressor = new Compressor(compressorSwitchSlot, compressorSpikeSlot);
@@ -48,10 +50,15 @@ public class subcompressor extends Subsystem {
 
     public void startCompressor() {
         myCompressor.start();
+        isOn =  true;
     }
 
     public void stopCompressor() {
         myCompressor.stop();
+        isOn = false;
     }
-
+public void SmartDashboard() {
+    SmartDashboard.putData("Compressor", this);
+    SmartDashboard.putBoolean("compressor is on", isOn);
+}
 }

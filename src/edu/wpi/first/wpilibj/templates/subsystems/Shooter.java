@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
@@ -25,6 +26,7 @@ public class Shooter extends Subsystem {
     private Encoder myEncoder;
     private DigitalInput limitSwitch;
     private DoubleSolenoid myDoubleSolenoid;
+    private boolean isEnabled;
     
     
      public Shooter(int victorSlot, int encoderSlot1,int encoderSlot2, int limitswitchslot, int solenoidslot1, int solenoidslot2) {
@@ -60,10 +62,12 @@ public class Shooter extends Subsystem {
    
     public void enable(){
         myPIDController.enable();
+        isEnabled = true;
     }
     
     public void disable(){
         myPIDController.disable();
+        isEnabled = false;
     }
     public boolean getPIDFin(){
         return myPIDController.onTarget();
@@ -76,5 +80,11 @@ public class Shooter extends Subsystem {
 
     public boolean getLimitSwitch() {
         return limitSwitch.get();
+    }
+    public void SmartDashboard() {
+        SmartDashboard.putData("Shooter", this);
+        SmartDashboard.putBoolean("Shooter limit switch", getLimitSwitch());
+        SmartDashboard.putNumber("Pid setpoint", myPIDController.getSetpoint());
+        SmartDashboard.putBoolean("shooter is enabled", isEnabled);
     }
 }

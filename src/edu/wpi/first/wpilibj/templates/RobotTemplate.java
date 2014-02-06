@@ -71,4 +71,12 @@ public class RobotTemplate extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
     }
+    public void SmartDashboard() {
+        CommandBase.myAimer.SmartDashboard();
+        CommandBase.oi.SmartDashboard();
+        CommandBase.subCompressor.SmartDashboard();
+        CommandBase.subDriveTrain.SmartDashboard();
+        CommandBase.subGatherer.SmartDashboard();
+        CommandBase.subShooter.SmartDashboard();
+    }
 }

@@ -153,5 +153,8 @@ private AxisCamera myCamera = AxisCamera.getInstance();
 
         return isTarget;
     }
+    public void SmartDashboard(){
+        SmartDashboard.putData("Aimer",this);
+    }
 
 }

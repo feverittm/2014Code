@@ -11,6 +11,7 @@ import java.util.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import java.util.TimerTask;
 
@@ -95,6 +96,10 @@ public class Gatherer extends Subsystem{
         myVictor.set(-1);
         isOn = true;
     }
-    
+    public void SmartDashboard() {
+        SmartDashboard.putData("Gatherer", this);
+        SmartDashboard.putBoolean("Gatherer is on", isOn);
+        SmartDashboard.putBoolean("Gatherer is extended", isExtended);
+                }
     
 }
