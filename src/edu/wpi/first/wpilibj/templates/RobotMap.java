@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.AnalogChannel;
 public class RobotMap extends RobotMapC {
    
     
-   public static final int LeftDriveslot = PWM1;
+    public static final int LeftDriveslot = PWM1;
     public static final int RightDriveslot = PWM2;
     public static final int GathererWheelslot = PWM3;
     public static final int Whintchslot = PWM4; 
@@ -28,13 +28,17 @@ public class RobotMap extends RobotMapC {
     public static final int LatchPunematicslot2 = Pnuematics4; 
     public static final int GathererExtendSlot = Pnuematics1;
     public static final int GathererRetractSlot = Pnuematics2;
+    public static final int GyroSlot = Analog1;
      
     //non-slot constants
     public static final double StartingGear = 1;
     public static final double LeftEncoderDistancePerPulse = 1;
     public static final double RightEncoderDistancePerPulse = 1;
-    public static double AbsolutePIDTolerance = 3;
-    static double DefaultSetPointForTheShooter = 500;
-    public static double SpitOutLocation;
+    public static final double AbsolutePIDTolerance = 3;
+    public static final double DefaultSetPointForTheShooter = 500;
+    public static final double SpitOutLocation = 500;
+    public static double GyroSensitivity = .007;
+    public static double distanceToDriveDuringAutonomous = 300;
+    
     
 }

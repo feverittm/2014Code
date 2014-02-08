@@ -7,6 +7,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import PersonaClassesl.SuperSpeedController;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -27,10 +28,11 @@ public class DriveTrain extends Subsystem {
     private Encoder rightEncoder;
     private SuperSpeedController leftMotor;
     private SuperSpeedController rightMotor;
+    private Gyro myGyro;
     
     private double gear;
 
-    public DriveTrain(int leftEncoderSlot1,int leftEncoderSlot2, int rightEncoderSlot1, int rightEncoderSlot2, int leftMotorSlot, int rightMotorSlot) {
+    public DriveTrain(int leftEncoderSlot1,int leftEncoderSlot2, int rightEncoderSlot1, int rightEncoderSlot2, int leftMotorSlot, int rightMotorSlot, int gyroSlot) {
         leftEncoder = new Encoder(leftEncoderSlot1,leftEncoderSlot2);
         LiveWindow.addSensor("Drive Train", "left encoder", leftEncoder);
         rightEncoder = new Encoder(rightEncoderSlot1,rightEncoderSlot2);
@@ -41,6 +43,9 @@ public class DriveTrain extends Subsystem {
         LiveWindow.addActuator("drive train", "left motor", (Talon) leftMotor.getSpeedController());
         rightMotor = new SuperSpeedController(new Talon(rightMotorSlot));
         LiveWindow.addActuator("drive train", "right motor", (Talon) rightMotor.getSpeedController());
+        myGyro = new Gyro(gyroSlot);
+        myGyro.setSensitivity(RobotMap.GyroSensitivity);
+        LiveWindow.addSensor("drive train", "gyro", myGyro);
         gear = RobotMap.StartingGear;
     }
     public void SetLeft(double speed){
@@ -63,5 +68,22 @@ public class DriveTrain extends Subsystem {
     }
     public void SmartDashboard(){
         SmartDashboard.putData("Drive Train",this);
+    }
+
+    public void resetEncoders() {
+        leftEncoder.reset();
+        rightEncoder.reset();
+    }
+
+    public void resetGyro() {
+        myGyro.reset();
+    }
+
+    public double getGyro() {
+        return myGyro.getAngle();
+    }
+
+    public double getAverageEncoders() {
+        return (leftEncoder.get()+rightEncoder.get())/2;
     }
 }

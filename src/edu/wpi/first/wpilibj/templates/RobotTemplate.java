@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.templates.commands.AutonomousCommand;
+import edu.wpi.first.wpilibj.templates.commands.FindHotGoal;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 /**
@@ -32,7 +32,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void robotInit() {
         // instantiate the command used for the autonomous period
-        autonomousCommand = new AutonomousCommand();
+        autonomousCommand = new FindHotGoal();
 
         // Initialize all subsystems
         CommandBase.init();

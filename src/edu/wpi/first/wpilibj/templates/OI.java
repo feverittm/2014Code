@@ -30,9 +30,9 @@ public class OI {
     private final JoystickButton SpitBallButton;
     private final JoystickButton SpitBallButton1;
     
-    private final Joystick Leftstick;
-    private final Joystick Rightstick ;   
-    private final Joystick Utilitystick;
+    private final Joystick997 Leftstick;
+    private final Joystick997 Rightstick ;   
+    private final Joystick997 Utilitystick;
     
     
    
@@ -81,12 +81,12 @@ public class OI {
     
     //Joystick Get y angle
     public double getLeftSpeed(){
-       return -Leftstick.getY();
+       return Leftstick.get();
     
         
     }
     public double getRightSpeed(){
-          return -Rightstick.getY();
+          return Rightstick.get();
     }
     public void SmartDashboard() {
         SmartDashboard.putNumber("joystick left Y value", getLeftSpeed());
