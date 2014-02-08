@@ -19,10 +19,11 @@ public class shootThenDrive extends CommandGroup {
         myTimer = new Timer();
         myTimer.reset();
         myTimer.start();
-        addSequential(new DriveToSetpoint(RobotMap.distanceToDriveDuringAutonomous));
-        addParallel(new PrepShooter(RobotMap.DefaultSetPointForTheShooter));
+        
+        addSequential(new PrepShooter(RobotMap.DefaultSetPointForTheShooter));
         addSequential(new WaitForHotGoal(myTimer));
         addSequential(new Shoot());
+        addSequential(new DriveToSetpoint(RobotMap.distanceToDriveDuringAutonomous));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
