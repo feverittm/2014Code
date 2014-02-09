@@ -49,22 +49,24 @@ public class Gatherer extends Subsystem{
     public void toggleOnOff() {
         if (isOn){
             turnOffGather();
-        }
-        if (!isOn){
+        } else if (!isOn){
             turnOnGather();
         }
     }
     public void toggleRetract() {
+       System.out.println("tryingToToggle");
         if (isExtended){
+            System.out.println("retracting gatherer");
             retractGatherer();
-        }
-        if (!isExtended){
+        } else if (!isExtended){
             extendGatherer();
+           System.out.println("extending gatherer");
         }
         
     }
     public void extendGatherer() {
        //extend
+        System.out.println("extending gather");
         isExtended = true;
         Actuator.set(DoubleSolenoid.Value.kForward);
         turnOnGather();
@@ -76,16 +78,19 @@ public class Gatherer extends Subsystem{
     
     public void retractGatherer() {
         //retract
+        System.out.println("retracting gather");
         isExtended = false;
         Actuator.set(DoubleSolenoid.Value.kReverse);
         turnOffGather();
     }
     public void turnOnGather() {
-        myVictor.set(1);
+        System.out.println("turning on gather");
+        myVictor.set(-.5);
         isOn = true;
     }
     public void turnOffGather() {
         myVictor.set(0);
+        System.out.println("turning of gather");
         isOn = false;
     }
     public boolean getIsExtended() {
@@ -93,7 +98,7 @@ public class Gatherer extends Subsystem{
     }
 
     public void turnOnGatherReverse() {
-        myVictor.set(-1);
+        myVictor.set(.5);
         isOn = true;
     }
     public void SmartDashboard() {

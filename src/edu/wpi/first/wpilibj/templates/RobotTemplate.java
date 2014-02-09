@@ -63,6 +63,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard();
     }
     
     /**
@@ -72,7 +73,7 @@ public class RobotTemplate extends IterativeRobot {
         LiveWindow.run();
     }
     public void SmartDashboard() {
-        CommandBase.myAimer.SmartDashboard();
+      //  CommandBase.myAimer.SmartDashboard();
         CommandBase.oi.SmartDashboard();
         CommandBase.subCompressor.SmartDashboard();
         CommandBase.subDriveTrain.SmartDashboard();

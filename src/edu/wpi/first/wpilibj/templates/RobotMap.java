@@ -22,13 +22,15 @@ public class RobotMap extends RobotMapC {
     public static final int leftEncoderSlot2 = DigitalIO_2;
     public static final int rightEncoderSlot1 = DigitalIO_3;
     public static final int rightEncoderSlot2 = DigitalIO_4;
+    
     public static final int compressorSpikeSlot = Relay2;
-    public static final int compressorSwitchSlot = DigitalIO_8;  
+    public static final int compressorSwitchSlot = DigitalIO_8;
+    
     public static final int LatchPunematicslot1 = Pnuematics3;
     public static final int LatchPunematicslot2 = Pnuematics4; 
     public static final int GathererExtendSlot = Pnuematics1;
     public static final int GathererRetractSlot = Pnuematics2;
-    public static final int GyroSlot = Analog1;
+    public static final int DriveGyroSlot = Analog1;
      
     //non-slot constants
     public static final double StartingGear = 1;

@@ -26,7 +26,7 @@ public class FindHotGoal extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        myAimer.LEDSOn();
+       // myAimer.LEDSOn();
         myTimer.start();
     }
 
@@ -37,17 +37,17 @@ public class FindHotGoal extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return myAimer.goalIsHot() || (myTimer.get()>=6);
+      return true;//  return myAimer.goalIsHot() || (myTimer.get()>=6);
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        myAimer.LEDStrand.set(Relay.Value.kOff);
+       // myAimer.LEDStrand.set(Relay.Value.kOff);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        myAimer.LEDStrand.set(Relay.Value.kOff);
+    //    myAimer.LEDStrand.set(Relay.Value.kOff);
     }
 }

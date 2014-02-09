@@ -40,16 +40,16 @@ public class DriveTrain extends Subsystem {
         leftEncoder.setDistancePerPulse(RobotMap.LeftEncoderDistancePerPulse);
         rightEncoder.setDistancePerPulse(RobotMap.RightEncoderDistancePerPulse);
         leftMotor = new SuperSpeedController(new Talon(leftMotorSlot));
-        LiveWindow.addActuator("drive train", "left motor", (Talon) leftMotor.getSpeedController());
+        LiveWindow.addActuator("Drive Train", "left motor", (Talon) leftMotor.getSpeedController());
         rightMotor = new SuperSpeedController(new Talon(rightMotorSlot));
-        LiveWindow.addActuator("drive train", "right motor", (Talon) rightMotor.getSpeedController());
+        LiveWindow.addActuator("Drive Train", "right motor", (Talon) rightMotor.getSpeedController());
         myGyro = new Gyro(gyroSlot);
         myGyro.setSensitivity(RobotMap.GyroSensitivity);
-        LiveWindow.addSensor("drive train", "gyro", myGyro);
+        LiveWindow.addSensor("Drive Train", "gyro", myGyro);
         gear = RobotMap.StartingGear;
     }
     public void SetLeft(double speed){
-    leftMotor.set(speed);   
+    leftMotor.set(-speed);   
     }
     
     public void SetRight(double speed){

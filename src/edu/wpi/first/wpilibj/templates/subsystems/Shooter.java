@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 /**
  *
@@ -27,8 +30,15 @@ public class Shooter extends Subsystem {
     private DigitalInput limitSwitch;
     private DoubleSolenoid myDoubleSolenoid;
     private boolean isEnabled;
-    
-    
+    private Timer limitSwitchChecker = new Timer();
+    private TimerTask checkLimitSwitch= new TimerTask() {
+
+        public void run() {
+            if (limitSwitch.get()){
+              //  stopWinch();
+            }
+        }
+    };
      public Shooter(int victorSlot, int encoderSlot1,int encoderSlot2, int limitswitchslot, int solenoidslot1, int solenoidslot2) {
        myVictor = new Victor(victorSlot); 
        LiveWindow.addActuator("Shooter", "Winch", myVictor);
@@ -42,6 +52,7 @@ public class Shooter extends Subsystem {
        LiveWindow.addActuator("Shooter", "PID", myPIDController);
        myPIDController.setAbsoluteTolerance(RobotMap.AbsolutePIDTolerance);
        myPIDController.setContinuous(false);
+      // limitSwitchChecker.scheduleAtFixedRate(checkLimitSwitch, 0, 5);
      }
    
     public void retractWinch() {

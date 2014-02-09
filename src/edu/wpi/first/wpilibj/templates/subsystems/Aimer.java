@@ -27,10 +27,10 @@ public class Aimer extends Subsystem {
     
 
     public Aimer() {
-        cc = new CriteriaCollection();      // create the criteria for the particle filter
-        cc.addCriteria(NIVision.MeasurementType.IMAQ_MT_AREA, AREA_MINIMUM, 65535, false);
+  //      cc = new CriteriaCollection();      // create the criteria for the particle filter
+    //    cc.addCriteria(NIVision.MeasurementType.IMAQ_MT_AREA, AREA_MINIMUM, 65535, false);
     }
-    
+   /* 
     private final int AREA_MINIMUM = 150;
     final int RECTANGULARITY_LIMIT = 40;
     final int ASPECT_RATIO_LIMIT = 55;
@@ -62,7 +62,20 @@ private AxisCamera myCamera = AxisCamera.getInstance();
 
         try {
 
+        //
+            
+            
+            
             myImage = myCamera.getImage();
+            
+            
+            
+            
+            
+            
+            
+            
+            
          //   filteredImage = myImage.thresholdRGB(119,169,117,168,33,159);
             // filteredImage = myImage.thresholdRGB(219,255,231,255,129,255);
             filteredImage = myImage.thresholdRGB(226, 255, 205, 255, 0, 170);
@@ -156,5 +169,9 @@ private AxisCamera myCamera = AxisCamera.getInstance();
     public void SmartDashboard(){
         SmartDashboard.putData("Aimer",this);
     }
+*/
 
+    protected void initDefaultCommand() {
+        
+    }
 }

@@ -34,7 +34,7 @@ public class WaitForHotGoal extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return myTimer.get() >= 5 || myAimer.goalIsHot();
+        return true;// myTimer.get() >= 5 || myAimer.goalIsHot();
     }
 
     // Called once after isFinished returns true
