@@ -73,7 +73,7 @@ public class Gatherer extends Subsystem{
     }
     
     public void upIn1Second() {
-        myTimer.schedule(null,1000);
+        //myTimer.schedule(null,1000);
     }
     
     public void retractGatherer() {
@@ -90,7 +90,7 @@ public class Gatherer extends Subsystem{
     }
     public void turnOffGather() {
         myVictor.set(0);
-        System.out.println("turning of gather");
+        System.out.println("turning off gather");
         isOn = false;
     }
     public boolean getIsExtended() {

@@ -36,7 +36,7 @@ public abstract class CommandBase extends Command {
             RobotMap.RightDriveslot,
             RobotMap.DriveGyroSlot);
     public static Shooter subShooter = new Shooter(
-            RobotMap.Whintchslot,
+            RobotMap.Winchslot,
             RobotMap.ShooterEncoderslot,
             RobotMap.ShooterEncoderslot2,
             RobotMap.LimitSwitchslot,

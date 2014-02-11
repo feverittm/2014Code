@@ -1,19 +1,17 @@
 package edu.wpi.first.wpilibj.templates;
 
-import PersonaClassesl.Joystick997;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.ReverseTankDrive;
-import edu.wpi.first.wpilibj.templates.commands.SetGear;
 import edu.wpi.first.wpilibj.templates.commands.PrepShooter;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
 import edu.wpi.first.wpilibj.templates.commands.SpitBall;
 import edu.wpi.first.wpilibj.templates.commands.TankDrive;
 import edu.wpi.first.wpilibj.templates.commands.ToggleGathererAngle;
 import edu.wpi.first.wpilibj.templates.commands.ToggleGathererOnOff;
-import edu.wpi.first.wpilibj.templates.commands.winchDownWhileHeld;
+import edu.wpi.first.wpilibj.templates.commands.gathererWheelsIn;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -21,21 +19,29 @@ import edu.wpi.first.wpilibj.templates.commands.winchDownWhileHeld;
  */
 public class OI {
 
-    private final Button ShooterButton1;
-    private final Button ShooterButton2;
+    private final Button ShooterButton;
     private final Button CockShooterButton;
     private final Button ToggleGathererButton;
-    private final Button ToggleGathererButton2;
     private final JoystickButton ReverseDriveButton;
     private final JoystickButton TankDriveButton;
     private final JoystickButton SpitBallButton;
-    private final JoystickButton SpitBallButton1;
-    private final JoystickButton RetractWinchButton;
+    private final JoystickButton GathererOn;
+    private final JoystickButton GathererOut;
+    private final JoystickButton GathererExtend;
+    private final JoystickButton GathererRetract;
+    private final JoystickButton RetractWinch;
+    private final JoystickButton ExtendWinch;
+    private final JoystickButton Latch;
     
     private final Joystick Leftstick;
     private final Joystick Rightstick;
     private final Joystick Utilitystick;
+    private final JoystickButton UnLatch;
+    
 
+    /**
+     *
+     */
     public OI() {
         //Joystick layout
         Leftstick = new Joystick(1);
@@ -43,33 +49,38 @@ public class OI {
         Utilitystick = new Joystick(3);
 
         //Button layout
-        ShooterButton1 = new JoystickButton(Leftstick, 1);
-        ToggleGathererButton = new JoystickButton(Leftstick, 2);
-        SpitBallButton = new JoystickButton(Leftstick, 3);
-        RetractWinchButton = new JoystickButton(Leftstick, 4);
+        GathererOn = new JoystickButton(Leftstick, 4);
+        GathererOut = new JoystickButton(Leftstick, 5);
+        GathererExtend = new JoystickButton(Leftstick,2);
+        GathererRetract = new JoystickButton(Leftstick,3);
+        Latch = new JoystickButton(Leftstick, 1);
+        UnLatch = new JoystickButton(Leftstick, 7);
         
-        ShooterButton2 = new JoystickButton(Rightstick, 1);
-        ToggleGathererButton2 = new JoystickButton(Rightstick, 2);
+        RetractWinch = new JoystickButton(Rightstick, 4);
+        ExtendWinch = new JoystickButton(Rightstick,5);
+        ShooterButton = new JoystickButton(Rightstick, 1);
+        ToggleGathererButton = new JoystickButton(Rightstick, 2);
+        SpitBallButton = new JoystickButton(Rightstick, 3);
         ReverseDriveButton = new JoystickButton(Rightstick, 8);
-        TankDriveButton = new JoystickButton(Rightstick, 9);
+        TankDriveButton = new JoystickButton(Rightstick, 9); 
         
-        SpitBallButton1 = new JoystickButton(Rightstick, 3);
         
         CockShooterButton = new JoystickButton(Utilitystick, 1);
 
         //Button Ports
         CockShooterButton.whenPressed(new PrepShooter(RobotMap.DefaultSetPointForTheShooter));
-        ShooterButton1.whenPressed(new Shoot());
-        ShooterButton2.whenPressed(new Shoot());
+        ShooterButton.whenPressed(new Shoot());
         ToggleGathererButton.whenPressed(new ToggleGathererAngle());
-        
-        ToggleGathererButton2.whenPressed(new ToggleGathererAngle());
         TankDriveButton.whenPressed(new TankDrive());
         ReverseDriveButton.whenPressed(new ReverseTankDrive());
         SpitBallButton.whenPressed(new SpitBall());
-        SpitBallButton1.whenPressed(new SpitBall());
-        RetractWinchButton.whileHeld(new winchDownWhileHeld());
-
+        Latch.whenPressed(new LatchCommand());
+        UnLatch.whenPressed(new UnLatchCommand());
+        GathererOn.whileHeld(new gathererWheelsIn());
+        GathererOut.whileHeld(new gathererWheelsOut());
+        GathererExtend.whenPressed(new extendGatherer());
+        
+        
         //SmartDashboard Buttons
         SmartDashboard.putData("Winch Shooter: ", new PrepShooter(RobotMap.DefaultSetPointForTheShooter));
         SmartDashboard.putData("Relesase Shooter: ", new Shoot());
