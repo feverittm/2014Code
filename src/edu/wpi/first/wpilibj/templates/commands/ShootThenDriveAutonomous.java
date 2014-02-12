@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj.templates.RobotMap;
  *
  * @author 997robotics4
  */
-public class shootThenDrive extends CommandGroup {
+public class ShootThenDriveAutonomous extends CommandGroup {
     Timer myTimer;
-    public shootThenDrive() {
+    public ShootThenDriveAutonomous() {
         myTimer = new Timer();
         myTimer.reset();
         myTimer.start();

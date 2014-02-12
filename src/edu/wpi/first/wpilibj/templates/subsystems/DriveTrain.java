@@ -34,8 +34,12 @@ public class DriveTrain extends Subsystem {
 
     public DriveTrain(int leftEncoderSlot1,int leftEncoderSlot2, int rightEncoderSlot1, int rightEncoderSlot2, int leftMotorSlot, int rightMotorSlot, int gyroSlot) {
         leftEncoder = new Encoder(leftEncoderSlot1,leftEncoderSlot2);
+        leftEncoder.start();
+        leftEncoder.reset();
         LiveWindow.addSensor("Drive Train", "left encoder", leftEncoder);
         rightEncoder = new Encoder(rightEncoderSlot1,rightEncoderSlot2);
+        rightEncoder.start();
+        rightEncoder.reset();
         LiveWindow.addSensor("Drive Train", "right encoder",rightEncoder);
         leftEncoder.setDistancePerPulse(RobotMap.LeftEncoderDistancePerPulse);
         rightEncoder.setDistancePerPulse(RobotMap.RightEncoderDistancePerPulse);
@@ -68,6 +72,9 @@ public class DriveTrain extends Subsystem {
     }
     public void SmartDashboard(){
         SmartDashboard.putData("Drive Train",this);
+        SmartDashboard.putNumber("left Encoder", leftEncoder.get());
+        SmartDashboard.putNumber("right encoder", rightEncoder.get());
+        SmartDashboard.putNumber("gyro", myGyro.getAngle());
     }
 
     public void resetEncoders() {

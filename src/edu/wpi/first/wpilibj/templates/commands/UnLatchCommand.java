@@ -5,13 +5,17 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.Timer;
+
+
+
 /**
  *
  * @author 997robotics4
  */
-public class winchDownWhileHeld extends CommandBase {
-    
-    public winchDownWhileHeld() {
+public class UnLatchCommand extends CommandBase {
+    Timer myTimer  = new Timer();
+    public UnLatchCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(subShooter);
@@ -19,28 +23,26 @@ public class winchDownWhileHeld extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        myTimer.reset();
+        myTimer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        subShooter.retractWinch();
+        subShooter.unLatch();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return myTimer.get()>1;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        subShooter.stopWinch();
-        
-        
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-       subShooter.stopWinch();
     }
 }

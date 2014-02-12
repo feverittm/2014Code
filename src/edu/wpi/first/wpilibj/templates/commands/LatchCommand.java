@@ -1,35 +1,38 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.templates.subsystems.Gatherer;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
- * @author 997robotics1
+ * @author 997robotics4
  */
-public class ToggleGathererAngle extends CommandBase {
-    
-    public ToggleGathererAngle() {
+public class LatchCommand extends CommandBase {
+    Timer myTimer = new Timer();
+    public LatchCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(subGatherer);
+        requires(subShooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        myTimer.reset();
+        myTimer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-       subGatherer.toggleRetract();
+        subShooter.latch();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return myTimer.get()>0;
     }
 
     // Called once after isFinished returns true
@@ -40,8 +43,4 @@ public class ToggleGathererAngle extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
-
-    
-
-    
 }

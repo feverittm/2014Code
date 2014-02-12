@@ -43,6 +43,8 @@ public class Shooter extends Subsystem {
        myVictor = new Victor(victorSlot); 
        LiveWindow.addActuator("Shooter", "Winch", myVictor);
        myEncoder = new Encoder(encoderSlot1, encoderSlot2);
+       myEncoder.start();
+       myEncoder.reset();
        LiveWindow.addSensor("Shooter", "Encoder", myEncoder);
        limitSwitch = new DigitalInput(limitswitchslot);
        LiveWindow.addSensor("Shooter", "Limit Switch", limitSwitch);
@@ -56,7 +58,9 @@ public class Shooter extends Subsystem {
      }
    
     public void retractWinch() {
+        if (!getLimitSwitch()){
         myVictor.set(-1);
+        }
     }
     public void stopWinch() {
         myVictor.set(0);
@@ -90,12 +94,17 @@ public class Shooter extends Subsystem {
     }
 
     public boolean getLimitSwitch() {
-        return limitSwitch.get();
+        return !limitSwitch.get();
     }
     public void SmartDashboard() {
         SmartDashboard.putData("Shooter", this);
         SmartDashboard.putBoolean("Shooter limit switch", getLimitSwitch());
         SmartDashboard.putNumber("Pid setpoint", myPIDController.getSetpoint());
         SmartDashboard.putBoolean("shooter is enabled", isEnabled);
+        SmartDashboard.putNumber("Shooter encoder", myEncoder.get());
+    }
+
+    public void extendWinch() {
+        myVictor.set(1);
     }
 }

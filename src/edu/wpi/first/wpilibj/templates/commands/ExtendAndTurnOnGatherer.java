@@ -6,22 +6,21 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
+
 
 /**
  *
  * @author 997robotics4
  */
-class retractGatherer extends CommandBase {
-
+public class ExtendAndTurnOnGatherer extends CommandBase {
     private Timer myTimer = new Timer();
 
-    public retractGatherer() {
+  ExtendAndTurnOnGatherer() {
         requires(subGatherer);
     }
 
     protected void initialize() {
-        subGatherer.retractGatherer();
+        subGatherer.extendGatherer();
         myTimer.reset();
         myTimer.start();
     }
@@ -38,5 +37,4 @@ class retractGatherer extends CommandBase {
 
     protected void interrupted() {
     }
-
 }

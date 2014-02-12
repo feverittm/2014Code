@@ -71,6 +71,14 @@ public class Gatherer extends Subsystem{
         Actuator.set(DoubleSolenoid.Value.kForward);
         turnOnGather();
     }
+    public void extendGathererOnly(){
+        isExtended = true;
+        Actuator.set(DoubleSolenoid.Value.kForward);
+    }
+    public void retractGathererOnly(){
+        isExtended = false;
+        Actuator.set(DoubleSolenoid.Value.kReverse);
+    }
     
     public void upIn1Second() {
         //myTimer.schedule(null,1000);

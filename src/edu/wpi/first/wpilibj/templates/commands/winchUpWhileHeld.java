@@ -5,49 +5,40 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.templates.commands.CommandBase;
-import edu.wpi.first.wpilibj.templates.commands.CommandBase;
-
 /**
  *
- * @author 997robotics3
+ * @author 997robotics4
  */
-public class FindHotGoal extends CommandBase {
-    Timer myTimer = new Timer();
+public class winchUpWhileHeld extends CommandBase {
     
-    public FindHotGoal() {
+    public winchUpWhileHeld() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(myAimer);
+        requires(subShooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-       // myAimer.LEDSOn();
-        myTimer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    
+        subShooter.extendWinch();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-      return true;//  return myAimer.goalIsHot() || (myTimer.get()>=6);
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-       // myAimer.LEDStrand.set(Relay.Value.kOff);
+        subShooter.stopWinch();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    //    myAimer.LEDStrand.set(Relay.Value.kOff);
+        subShooter.stopWinch();
     }
 }

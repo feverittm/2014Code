@@ -3,43 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package edu.wpi.first.wpilibj.templates.commands;
 
-/**
- *
- * @author 997robotics4
- */
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  * @author 997robotics4
  */
-class extendGatherer extends CommandBase {
+class WinchAndLatch extends CommandBase {
 
-    private Timer myTimer = new Timer();
-
-    public extendGatherer() {
-        requires(subGatherer);
+    public WinchAndLatch() {
+        requires(subShooter);
     }
 
     protected void initialize() {
-        subGatherer.extendGatherer();
-        myTimer.reset();
-        myTimer.start();
+       
     }
 
     protected void execute() {
+        subShooter.retractWinch();
     }
 
     protected boolean isFinished() {
-        return myTimer.get() > 1;
+        return subShooter.getLimitSwitch();
     }
 
     protected void end() {
+       subShooter.latch();
+       subShooter.stopWinch();
     }
 
     protected void interrupted() {
+        subShooter.stopWinch();
     }
+    
 }
-

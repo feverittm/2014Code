@@ -1,44 +1,45 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
-
 /**
  *
- * @author 997robotics1
+ * @author 997robotics4
  */
-public class SetGear extends CommandBase {
-    private double gear;
-    public SetGear(double gear) {
-        this.gear = gear;
+public class GathererWheelsOutWhileHeld extends CommandBase {
+    
+    public GathererWheelsOutWhileHeld() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(subDriveTrain);
+        requires(subGatherer);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-       subDriveTrain.SetGear(gear);
+        
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    subGatherer.turnOnGatherReverse();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        subGatherer.turnOffGather();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    subGatherer.turnOffGather();
     }
 }
