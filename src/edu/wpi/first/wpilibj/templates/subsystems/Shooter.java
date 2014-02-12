@@ -107,4 +107,12 @@ public class Shooter extends Subsystem {
     public void extendWinch() {
         myVictor.set(1);
     }
+
+    public void resetEncoder() {
+        myEncoder.reset();
+    }
+
+    public double getEncoder() {
+        return myEncoder.get();
+    }
 }

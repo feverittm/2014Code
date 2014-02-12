@@ -6,6 +6,7 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
  *
@@ -25,29 +26,27 @@ public class Shoot extends CommandBase {
         myTimer.reset();
         myTimer.start();
         subGatherer.extendGatherer();
-        subShooter.setSetpoint(100);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        subShooter.enable();
-    
+        subShooter.extendWinch();    
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return myTimer.get()>2 && subShooter.getPIDFin();
+        return subShooter.getEncoder()>RobotMap.DefaultSetPointForTheShooter;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        subShooter.disable();
+        subShooter.stopWinch();
         subShooter.unLatch();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    subShooter.disable();
+    subShooter.stopWinch();
     }
 }

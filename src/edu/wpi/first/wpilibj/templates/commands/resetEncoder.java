@@ -9,28 +9,28 @@ package edu.wpi.first.wpilibj.templates.commands;
  *
  * @author 997robotics4
  */
-public class WinchToSetpoint extends CommandBase {
-    private double setpoint;
-    public WinchToSetpoint(double setpoint) {
-    this.setpoint = setpoint;    
+public class resetEncoder extends CommandBase {
+    
+    public resetEncoder() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(subShooter);
+        requires(subDriveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    subShooter.resetEncoder();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        subShooter.extendWinch();
+        subShooter.resetEncoder();
+        subDriveTrain.resetEncoders();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return subShooter.getEncoder()>setpoint;
+        return true;
     }
 
     // Called once after isFinished returns true

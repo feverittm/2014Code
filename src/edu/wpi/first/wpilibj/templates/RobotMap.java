@@ -38,7 +38,7 @@ public class RobotMap extends RobotMapC {
     public static final double LeftEncoderDistancePerPulse = 1;
     public static final double RightEncoderDistancePerPulse = 1;
     public static final double AbsolutePIDTolerance = 3;
-    public static final double DefaultSetPointForTheShooter = 500;
+    public static final double DefaultSetPointForTheShooter = 3000;
     public static final double SpitOutLocation = 500;
     public static double GyroSensitivity = .007;
     public static double distanceToDriveDuringAutonomous = 300;
