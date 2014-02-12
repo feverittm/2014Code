@@ -80,7 +80,7 @@ public class OI {
         CockShooterButton = new JoystickButton(Utilitystick, 1);
 
         //Button Ports
-        CockShooterButton.whenPressed(new PrepShooter(RobotMap.DefaultSetPointForTheShooter));
+        CockShooterButton.whenPressed(new PrepShooter());
         ShooterButton.whenPressed(new Shoot());
         ToggleGathererButton.whenPressed(new ToggleGathererAngleAndPower());
         TankDriveButton.whenPressed(new TankDrive());
@@ -97,7 +97,7 @@ public class OI {
         
         
         //SmartDashboard Buttons
-        SmartDashboard.putData("Winch Shooter: ", new PrepShooter(RobotMap.DefaultSetPointForTheShooter));
+        SmartDashboard.putData("Winch Shooter: ", new PrepShooter());
         SmartDashboard.putData("Relesase Shooter: ", new Shoot());
         SmartDashboard.putData("Toggle Gatherer",new ToggleGathererAngleAndPower());
         SmartDashboard.putData("Toggle Gatherer On/Off: ", new ToggleGathererPower());

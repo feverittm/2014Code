@@ -13,11 +13,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class PrepShooter extends CommandGroup {
     
-    public PrepShooter(double setPoint) {
+    public PrepShooter() {
         addSequential(new RetractGathererAndTurnOffPower());
         addSequential (new gathererWheelsIn());
         addSequential(new WinchAndLatch());
-        addSequential(new WinchToSetpoint(setPoint));
         addSequential(new gathererWheelsOff());
      
         

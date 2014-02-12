@@ -47,7 +47,7 @@ public class SpitBall extends CommandBase {
     protected void end() {
 
         subShooter.disable();
-
+        subGatherer.turnOffGather();
     }
 
     // Called when another command which requires one or more of the same
@@ -55,6 +55,6 @@ public class SpitBall extends CommandBase {
     protected void interrupted() {
 
         subShooter.disable();
-
+        subGatherer.turnOffGather();
     }
 }

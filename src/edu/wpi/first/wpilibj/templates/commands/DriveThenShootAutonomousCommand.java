@@ -20,7 +20,7 @@ public Timer myTimer;
         myTimer.reset();
         myTimer.start();
         addSequential(new DriveToSetpoint(RobotMap.distanceToDriveDuringAutonomous));
-        addParallel(new PrepShooter(RobotMap.DefaultSetPointForTheShooter));
+        addParallel(new PrepShooter());
         addSequential(new WaitForHotGoal(myTimer));
         addSequential(new Shoot());
         // Add Commands here:

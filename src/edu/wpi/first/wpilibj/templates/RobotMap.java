@@ -31,6 +31,7 @@ public class RobotMap extends RobotMapC {
     public static final int GathererExtendSlot = Pnuematics1;
     public static final int GathererRetractSlot = Pnuematics2;
     public static final int DriveGyroSlot = Analog1;
+    public static final int UltrasonicSlot = Analog2;
      
     //non-slot constants
     public static final double StartingGear = 1;

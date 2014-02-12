@@ -39,6 +39,7 @@ public class Gatherer extends Subsystem{
         LiveWindow.addActuator("Gatherer", "solenoid", Actuator);
         myVictor = new Victor(intakeMotorSlot);
         LiveWindow.addActuator("Gatherer", "motor", myVictor);
+        retractGatherer();
     }
     
     public void initDefaultCommand() {
