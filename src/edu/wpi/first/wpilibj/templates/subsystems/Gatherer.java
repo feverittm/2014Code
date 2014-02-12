@@ -69,16 +69,16 @@ public class Gatherer extends Subsystem{
        //extend
         System.out.println("extending gather");
         isExtended = true;
-        Actuator.set(DoubleSolenoid.Value.kForward);
+        Actuator.set(DoubleSolenoid.Value.kReverse);
         turnOnGather();
     }
     public void extendGathererOnly(){
         isExtended = true;
-        Actuator.set(DoubleSolenoid.Value.kForward);
+        Actuator.set(DoubleSolenoid.Value.kReverse);
     }
     public void retractGathererOnly(){
         isExtended = false;
-        Actuator.set(DoubleSolenoid.Value.kReverse);
+        Actuator.set(DoubleSolenoid.Value.kForward);
     }
     
     public void upIn1Second() {
@@ -89,7 +89,7 @@ public class Gatherer extends Subsystem{
         //retract
         System.out.println("retracting gather");
         isExtended = false;
-        Actuator.set(DoubleSolenoid.Value.kReverse);
+        Actuator.set(DoubleSolenoid.Value.kForward);
         turnOffGather();
     }
     public void turnOnGather() {
