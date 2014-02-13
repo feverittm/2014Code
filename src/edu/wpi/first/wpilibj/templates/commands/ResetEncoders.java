@@ -9,9 +9,9 @@ package edu.wpi.first.wpilibj.templates.commands;
  *
  * @author 997robotics4
  */
-public class resetEncoder extends CommandBase {
+public class ResetEncoders extends CommandBase {
     
-    public resetEncoder() {
+    public ResetEncoders() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(subShooter);

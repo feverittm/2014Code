@@ -24,8 +24,9 @@ public class Shoot extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         myTimer.reset();
+        subShooter.resetEncoder();
         myTimer.start();
-        subGatherer.extendGatherer();
+        subGatherer.extendGathererOnly();
     }
 
     // Called repeatedly when this Command is scheduled to run

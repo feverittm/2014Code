@@ -30,7 +30,8 @@ class RetractGathererAndTurnOffPower extends CommandBase {
     }
 
     protected boolean isFinished() {
-        return myTimer.get() > 1;
+        //stops the command after 2 second
+        return myTimer.get() >= 2;
     }
 
     protected void end() {

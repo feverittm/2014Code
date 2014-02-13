@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.templates.commands.gathererWheelsIn;
 import edu.wpi.first.wpilibj.templates.commands.gathererWheelsOff;
 import edu.wpi.first.wpilibj.templates.commands.GathererWheelsOutWhileHeld;
 import edu.wpi.first.wpilibj.templates.commands.extendGathererOnly;
-import edu.wpi.first.wpilibj.templates.commands.resetEncoder;
+import edu.wpi.first.wpilibj.templates.commands.ResetEncoders;
 import edu.wpi.first.wpilibj.templates.commands.retractGathererOnly;
 import edu.wpi.first.wpilibj.templates.commands.winchDownWhileHeld;
 import edu.wpi.first.wpilibj.templates.commands.winchUpWhileHeld;
@@ -104,7 +104,7 @@ public class OI {
         SmartDashboard.putData("Toggle Gatherer On/Off: ", new ToggleGathererPower());
         SmartDashboard.putData("normal drive", new TankDrive());
         SmartDashboard.putData("Reverse Drive", new ReverseTankDrive());
-        SmartDashboard.putData("reset encoders", new resetEncoder());
+        SmartDashboard.putData("reset encoders", new ResetEncoders());
     }
 
     //Joystick Get y angle

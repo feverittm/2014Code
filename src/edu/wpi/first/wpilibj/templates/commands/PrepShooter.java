@@ -14,11 +14,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class PrepShooter extends CommandGroup {
     
     public PrepShooter() {
-        addSequential(new RetractGathererAndTurnOffPower());
-        addSequential (new gathererWheelsIn());
-        addSequential(new WinchAndLatch());
-        addSequential(new gathererWheelsOff());
-     
         
+        addSequential(new WinchAndLatch());
+        addSequential(new RetractGathererAndWheelsIn());
+        addSequential(new gathererWheelsOff());
     }
 }

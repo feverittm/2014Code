@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import java.util.Timer;
-import java.util.TimerTask;
 
 
 /**
@@ -22,6 +21,7 @@ import java.util.TimerTask;
  * @author 997robotics1
  */
 public class Shooter extends Subsystem {
+
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     private PIDController myPIDController;
@@ -31,60 +31,61 @@ public class Shooter extends Subsystem {
     private DoubleSolenoid myDoubleSolenoid;
     private boolean isEnabled;
     private Timer limitSwitchChecker = new Timer();
-    private TimerTask checkLimitSwitch= new TimerTask() {
-
-        public void run() {
-            if (limitSwitch.get()){
-              //  stopWinch();
-            }
-        }
-    };
-     public Shooter(int victorSlot, int encoderSlot1,int encoderSlot2, int limitswitchslot, int solenoidslot1, int solenoidslot2) {
-       myVictor = new Victor(victorSlot); 
-       LiveWindow.addActuator("Shooter", "Winch", myVictor);
-       myEncoder = new Encoder(encoderSlot1, encoderSlot2);
-       myEncoder.start();
-       myEncoder.reset();
-       LiveWindow.addSensor("Shooter", "Encoder", myEncoder);
-       limitSwitch = new DigitalInput(limitswitchslot);
-       LiveWindow.addSensor("Shooter", "Limit Switch", limitSwitch);
-       myDoubleSolenoid = new DoubleSolenoid(solenoidslot1, solenoidslot2);
-       LiveWindow.addActuator("Shooter","latch",myDoubleSolenoid);
-       myPIDController = new PIDController(0, 0, 0, myEncoder, myVictor);
-       LiveWindow.addActuator("Shooter", "PID", myPIDController);
-       myPIDController.setAbsoluteTolerance(RobotMap.AbsolutePIDTolerance);
-       myPIDController.setContinuous(false);
-      // limitSwitchChecker.scheduleAtFixedRate(checkLimitSwitch, 0, 5);
-     }
    
+
+    public Shooter(int victorSlot, int encoderSlot1, int encoderSlot2, int limitswitchslot, int solenoidslot1, int solenoidslot2) {
+        myVictor = new Victor(victorSlot);
+        LiveWindow.addActuator("Shooter", "Winch", myVictor);
+        myEncoder = new Encoder(encoderSlot1, encoderSlot2);
+        myEncoder.start();
+        myEncoder.reset();
+        LiveWindow.addSensor("Shooter", "Encoder", myEncoder);
+        limitSwitch = new DigitalInput(limitswitchslot);
+        LiveWindow.addSensor("Shooter", "Limit Switch", limitSwitch);
+        myDoubleSolenoid = new DoubleSolenoid(solenoidslot1, solenoidslot2);
+        LiveWindow.addActuator("Shooter", "latch", myDoubleSolenoid);
+        myPIDController = new PIDController(0, 0, 0, myEncoder, myVictor);
+        LiveWindow.addActuator("Shooter", "PID", myPIDController);
+        myPIDController.setAbsoluteTolerance(RobotMap.AbsolutePIDTolerance);
+        myPIDController.setContinuous(false);
+        // limitSwitchChecker.scheduleAtFixedRate(checkLimitSwitch, 0, 5);
+    }
+
     public void retractWinch() {
-        if (!getLimitSwitch()){
-        myVictor.set(-1);
+        if (!getLimitSwitch()) {
+            myVictor.set(-1);
+        } else {
+            myVictor.set(0);
         }
     }
+
     public void stopWinch() {
         myVictor.set(0);
     }
-    public void setSetpoint(double setpoint){
+
+    public void setSetpoint(double setpoint) {
         myPIDController.setSetpoint(setpoint);
     }
-    public void latch(){
+
+    public void latch() {
         myDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
-    } 
+    }
+
     public void unLatch() {
         myDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
-   
-    public void enable(){
+
+    public void enable() {
         myPIDController.enable();
         isEnabled = true;
     }
-    
-    public void disable(){
+
+    public void disable() {
         myPIDController.disable();
         isEnabled = false;
     }
-    public boolean getPIDFin(){
+
+    public boolean getPIDFin() {
         return myPIDController.onTarget();
     }
 
@@ -96,6 +97,7 @@ public class Shooter extends Subsystem {
     public boolean getLimitSwitch() {
         return !limitSwitch.get();
     }
+
     public void SmartDashboard() {
         SmartDashboard.putData("Shooter", this);
         SmartDashboard.putBoolean("Shooter limit switch", getLimitSwitch());
