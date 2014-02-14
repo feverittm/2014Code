@@ -68,5 +68,6 @@ public class subcompressor extends Subsystem {
     public void SmartDashboard() {
         SmartDashboard.putData("Compressor", this);
         SmartDashboard.putBoolean("compressor is on", isOn);
+        SmartDashboard.putBoolean("compressor is at pressure? ", atPressure());
     }
 }
