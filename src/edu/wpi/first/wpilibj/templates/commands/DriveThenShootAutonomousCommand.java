@@ -19,6 +19,7 @@ public Timer myTimer;
         myTimer = new Timer();
         myTimer.reset();
         myTimer.start();
+        addSequential(new ExtendAndTurnOnGatherer());
         addSequential(new DriveToSetpoint(RobotMap.distanceToDriveDuringAutonomous));
         addParallel(new PrepShooter());
         addSequential(new WaitForHotGoal(myTimer));

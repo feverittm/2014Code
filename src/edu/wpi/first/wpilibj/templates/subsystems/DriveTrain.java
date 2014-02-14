@@ -6,6 +6,7 @@
 package edu.wpi.first.wpilibj.templates.subsystems;
 
 import PersonaClassesl.SuperSpeedController;
+import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Talon;
@@ -29,9 +30,10 @@ public class DriveTrain extends Subsystem {
     private SuperSpeedController leftMotor;
     private SuperSpeedController rightMotor;
     private Gyro myGyro;
+    private AnalogChannel UltraSonic;
     
     private double gear;
-
+    
     public DriveTrain(int leftEncoderSlot1,int leftEncoderSlot2, int rightEncoderSlot1, int rightEncoderSlot2, int leftMotorSlot, int rightMotorSlot, int gyroSlot) {
         leftEncoder = new Encoder(leftEncoderSlot1,leftEncoderSlot2);
         leftEncoder.start();
@@ -51,6 +53,7 @@ public class DriveTrain extends Subsystem {
         myGyro.setSensitivity(RobotMap.GyroSensitivity);
         LiveWindow.addSensor("Drive Train", "gyro", myGyro);
         gear = RobotMap.StartingGear;
+        UltraSonic = new AnalogChannel(RobotMap.UltrasonicSlot);
     }
     public void SetLeft(double speed){
     leftMotor.set(-speed);   
@@ -75,6 +78,7 @@ public class DriveTrain extends Subsystem {
         SmartDashboard.putNumber("left Encoder", leftEncoder.get());
         SmartDashboard.putNumber("right encoder", rightEncoder.get());
         SmartDashboard.putNumber("gyro", myGyro.getAngle());
+        SmartDashboard.putNumber("UltraSonic", getUltraSonicDistance());
     }
 
     public void resetEncoders() {
@@ -92,5 +96,8 @@ public class DriveTrain extends Subsystem {
 
     public double getAverageEncoders() {
         return (leftEncoder.get()+rightEncoder.get())/2;
+    }
+    public double getUltraSonicDistance(){
+        return UltraSonic.getVoltage()/RobotMap.UltraSonicCalibration; 
     }
 }

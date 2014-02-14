@@ -34,6 +34,7 @@ public class RobotMap extends RobotMapC {
     public static final int UltrasonicSlot = Analog2;
      
     //non-slot constants
+   public static final double UltraSonicCalibration = 0.009766;
     public static final double StartingGear = 1;
     public static final double LeftEncoderDistancePerPulse = 1;
     public static final double RightEncoderDistancePerPulse = 1;
