@@ -27,7 +27,7 @@ public class subcompressor extends Subsystem {
         public void run() {
             startCompressor();
         }
-        
+
     };
     private TimerTask offTask = new TimerTask() {
 
@@ -35,13 +35,13 @@ public class subcompressor extends Subsystem {
             stopCompressor();
         }
     };
-    
+
     private boolean isOn;
 
     public subcompressor(int compressorSwitchSlot, int compressorSpikeSlot) {
         myCompressor = new Compressor(compressorSwitchSlot, compressorSpikeSlot);
         LiveWindow.addActuator("compressor", "compressor", myCompressor);
-       // myTimer.scheduleAtFixedRate(onTask, 0, 40000);
+        // myTimer.scheduleAtFixedRate(onTask, 0, 40000);
         //myTimer.scheduleAtFixedRate(offTask, 20000, 40000);
         myCompressor.start();
     }
@@ -53,15 +53,20 @@ public class subcompressor extends Subsystem {
 
     public void startCompressor() {
         myCompressor.start();
-        isOn =  true;
+        isOn = true;
     }
 
     public void stopCompressor() {
         myCompressor.stop();
         isOn = false;
     }
+
+    public boolean atPressure() {
+        return myCompressor.getPressureSwitchValue();
+    }
+
     public void SmartDashboard() {
-    SmartDashboard.putData("Compressor", this);
-    SmartDashboard.putBoolean("compressor is on", isOn);
-}
+        SmartDashboard.putData("Compressor", this);
+        SmartDashboard.putBoolean("compressor is on", isOn);
+    }
 }
