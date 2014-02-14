@@ -17,15 +17,15 @@ public class ExtendAndTurnOnGatherer extends CommandBase {
 
   ExtendAndTurnOnGatherer() {
         requires(subGatherer);
-    }
-
-    protected void initialize() {
-        subGatherer.extendGatherer();
         myTimer.reset();
         myTimer.start();
     }
 
+    protected void initialize() {
+    }
+
     protected void execute() {
+        subGatherer.extendGatherer();
     }
 
     protected boolean isFinished() {

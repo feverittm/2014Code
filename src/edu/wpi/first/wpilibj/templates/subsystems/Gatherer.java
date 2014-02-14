@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -19,8 +18,8 @@ import java.util.TimerTask;
  *
  * @author Administrator
  */
-public class Gatherer extends Subsystem{
-  
+public class Gatherer extends Subsystem {
+
     private boolean isExtended;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -31,60 +30,65 @@ public class Gatherer extends Subsystem{
     public TimerTask myTimerTask = new TimerTask() {
 
         public void run() {
-      retractGatherer();
+            retractGatherer();
         }
     };
-    public Gatherer(int intakeMotorSlot,int extendSolenoidSlot, int RetractSolenoidSlot) {
-        Actuator = new DoubleSolenoid(extendSolenoidSlot,RetractSolenoidSlot);
+
+    public Gatherer(int intakeMotorSlot, int extendSolenoidSlot, int RetractSolenoidSlot) {
+        Actuator = new DoubleSolenoid(extendSolenoidSlot, RetractSolenoidSlot);
         LiveWindow.addActuator("Gatherer", "solenoid", Actuator);
         myVictor = new Victor(intakeMotorSlot);
         LiveWindow.addActuator("Gatherer", "motor", myVictor);
         retractGatherer();
     }
-    
+
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    
+
     public void toggleOnOff() {
-        if (isOn){
+        if (isOn) {
             turnOffGather();
-        } else if (!isOn){
+        } else if (!isOn) {
             turnOnGather();
         }
     }
+
     public void toggleRetract() {
-       System.out.println("tryingToToggle");
-        if (isExtended){
+        System.out.println("tryingToToggle");
+        if (isExtended) {
             System.out.println("retracting gatherer");
             retractGatherer();
-        } else if (!isExtended){
+        } else if (!isExtended) {
             extendGatherer();
-           System.out.println("extending gatherer");
+            System.out.println("extending gatherer");
         }
-        
+
     }
+
     public void extendGatherer() {
-       //extend
+        //extend
         System.out.println("extending gather");
         isExtended = true;
         Actuator.set(DoubleSolenoid.Value.kReverse);
         turnOnGather();
     }
-    public void extendGathererOnly(){
+
+    public void extendGathererOnly() {
         isExtended = true;
         Actuator.set(DoubleSolenoid.Value.kReverse);
     }
-    public void retractGathererOnly(){
+
+    public void retractGathererOnly() {
         isExtended = false;
         Actuator.set(DoubleSolenoid.Value.kForward);
     }
-    
+
     public void upIn1Second() {
         //myTimer.schedule(null,1000);
     }
-    
+
     public void retractGatherer() {
         //retract
         System.out.println("retracting gather");
@@ -92,16 +96,19 @@ public class Gatherer extends Subsystem{
         Actuator.set(DoubleSolenoid.Value.kForward);
         turnOffGather();
     }
+
     public void turnOnGather() {
         System.out.println("turning on gather");
         myVictor.set(-.5);
         isOn = true;
     }
+
     public void turnOffGather() {
         myVictor.set(0);
         System.out.println("turning off gather");
         isOn = false;
     }
+
     public boolean getIsExtended() {
         return isExtended;
     }
@@ -110,10 +117,11 @@ public class Gatherer extends Subsystem{
         myVictor.set(.5);
         isOn = true;
     }
+
     public void SmartDashboard() {
         SmartDashboard.putData("Gatherer", this);
         SmartDashboard.putBoolean("Gatherer is on", isOn);
         SmartDashboard.putBoolean("Gatherer is extended", isExtended);
-                }
-    
+    }
+
 }
