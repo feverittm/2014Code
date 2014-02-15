@@ -24,7 +24,6 @@ public class Shoot extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         myTimer.reset();
-        subShooter.resetEncoder();
         myTimer.start();
         subGatherer.extendGathererArms();
     }
@@ -35,8 +34,8 @@ public class Shoot extends CommandBase {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return subShooter.getEncoder()>RobotMap.DefaultSetPointForTheShooter;
+    protected boolean isFinished() {                                               // makes sure its prepped before doing anything
+        return (subShooter.getEncoder()>RobotMap.DefaultSetPointForTheShooter || !subShooter.isPrepped);
     }
 
     // Called once after isFinished returns true

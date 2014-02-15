@@ -44,5 +44,4 @@ public class RobotMap extends RobotMapC {
     public static double GyroSensitivity = .007;
     public static double distanceToDriveDuringAutonomous = 300;
     
-    
 }

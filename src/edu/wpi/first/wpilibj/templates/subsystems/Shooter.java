@@ -31,6 +31,7 @@ public class Shooter extends Subsystem {
     private DoubleSolenoid myDoubleSolenoid;
     private boolean isEnabled;
     private Timer limitSwitchChecker = new Timer();
+    public boolean isPrepped;
    
 
     public Shooter(int victorSlot, int encoderSlot1, int encoderSlot2, int limitswitchslot, int solenoidslot1, int solenoidslot2) {
@@ -48,6 +49,7 @@ public class Shooter extends Subsystem {
         LiveWindow.addActuator("Shooter", "PID", myPIDController);
         myPIDController.setAbsoluteTolerance(RobotMap.AbsolutePIDTolerance);
         myPIDController.setContinuous(false);
+        isPrepped = false;
         // limitSwitchChecker.scheduleAtFixedRate(checkLimitSwitch, 0, 5);
     }
 
@@ -95,7 +97,11 @@ public class Shooter extends Subsystem {
     }
 
     public boolean getLimitSwitch() {
-        return !limitSwitch.get();
+        boolean value = !limitSwitch.get();
+        if (value) {
+            resetEncoder();
+        }
+        return value;
     }
 
     public void SmartDashboard() {
@@ -107,8 +113,9 @@ public class Shooter extends Subsystem {
     }
 
     public void extendWinch() {
-        myVictor.set(1);
-    }
+       if (!(getEncoder()>RobotMap.DefaultSetPointForTheShooter+1000)){
+               myVictor.set(1);
+       }}
 
     public void resetEncoder() {
         myEncoder.reset();

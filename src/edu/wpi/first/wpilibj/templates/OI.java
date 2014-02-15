@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.templates.commands.ToggleGathererAngleAndPower;
 import edu.wpi.first.wpilibj.templates.commands.ToggleGathererPower;
 import edu.wpi.first.wpilibj.templates.commands.UnLatchCommand;
 import edu.wpi.first.wpilibj.templates.commands.ExtendAndTurnOnGatherer;
+import edu.wpi.first.wpilibj.templates.commands.GathererToggleExtendRetractOnly;
 import edu.wpi.first.wpilibj.templates.commands.gathererWheelsIn;
 import edu.wpi.first.wpilibj.templates.commands.gathererWheelsOff;
 import edu.wpi.first.wpilibj.templates.commands.GathererWheelsOutWhileHeld;
@@ -48,6 +49,7 @@ public class OI {
     private final Joystick Rightstick;
     private final Joystick Utilitystick;
     private final JoystickButton UnLatch;
+    private final JoystickButton ToggleGatherArms;
     
 
     /**
@@ -79,6 +81,7 @@ public class OI {
         
         
         CockShooterButton = new JoystickButton(Utilitystick, 1);
+        ToggleGatherArms = new JoystickButton(Utilitystick, 2);
 
         //Button Ports
         CockShooterButton.whenPressed(new PrepShooter());
@@ -95,6 +98,7 @@ public class OI {
         GathererRetract.whenPressed(new retractGathererOnly());
         RetractWinch.whileHeld(new winchDownWhileHeld());
         ExtendWinch.whileHeld(new winchUpWhileHeld());
+        ToggleGatherArms.whenPressed(new GathererToggleExtendRetractOnly());
         
         
         //SmartDashboard Buttons
