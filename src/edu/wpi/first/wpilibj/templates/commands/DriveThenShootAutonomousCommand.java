@@ -20,8 +20,8 @@ public Timer myTimer;
         myTimer.reset();
         myTimer.start();
         addSequential(new ExtendAndTurnOnGatherer());
-        addSequential(new DriveToSetpoint(RobotMap.distanceToDriveDuringAutonomous));
         addParallel(new PrepShooter());
+        addSequential(new DriveToSetpoint(RobotMap.distanceToDriveDuringAutonomous));
         addSequential(new WaitForHotGoal(myTimer));
         addSequential(new Shoot());
         // Add Commands here:

@@ -16,11 +16,10 @@ public class SpitBall extends CommandGroup {
     
     public SpitBall() {
    
-        addSequential(new WinchAndLatch());
-        addSequential(new UnLatchCommand());
-        addParallel(new RetractGathererAndTurnOffPower());
+      
+        
+        addSequential(new extendGathererOnly());
         addSequential(new GathererWheelsOut());
-        addSequential(new WinchToSetpoint(RobotMap.ShooterUnwoundLocation));
-        addSequential(new gathererWheelsOff());
+       
     }
 }

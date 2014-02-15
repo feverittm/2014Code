@@ -58,6 +58,7 @@ public class RobotTemplate extends IterativeRobot {
         
         autonomousCommand.cancel();
         CommandBase.subGatherer.retractGatherer();
+        CommandBase.subShooter.unLatch();
     }
 
     /**

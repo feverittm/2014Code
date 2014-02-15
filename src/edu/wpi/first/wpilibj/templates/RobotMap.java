@@ -16,8 +16,8 @@ public class RobotMap extends RobotMapC {
     public static final int GathererWheelslot = PWM3;
     public static final int Winchslot = PWM4; 
     public static final int LimitSwitchslot = DigitalIO_14;
-    public static final int ShooterEncoderslot = DigitalIO_6; 
-    public static final int ShooterEncoderslot2 = DigitalIO_7;
+    public static final int ShooterEncoderslot = DigitalIO_9; 
+    public static final int ShooterEncoderslot2 = DigitalIO_10;
     public static final int leftEncoderSlot1 = DigitalIO_1;
     public static final int leftEncoderSlot2 = DigitalIO_2;
     public static final int rightEncoderSlot1 = DigitalIO_3;
@@ -25,7 +25,7 @@ public class RobotMap extends RobotMapC {
     
     public static final int compressorSpikeSlot = Relay2;
     public static final int compressorSwitchSlot = DigitalIO_8;
-    
+                                                                                                                                                                                               ///why would you look here?
    
     public static final int LatchPunematicslot = Pnuematics4; 
     public static final int GathererExtendSlot = Pnuematics1;
@@ -34,14 +34,14 @@ public class RobotMap extends RobotMapC {
     public static final int UltrasonicSlot = Analog2;
      
     //non-slot constants
-   public static final double UltraSonicCalibration = 0.009766;
+    public static final double UltraSonicCalibration = 0.009766;
     public static final double StartingGear = 1;
     public static final double LeftEncoderDistancePerPulse = 1;
     public static final double RightEncoderDistancePerPulse = 1;
     public static final double AbsolutePIDTolerance = 3;
-    public static final double ShooterUnwoundLocation = 3000;
+    public static final double ShooterUnwoundLocation = 2600;
+    public static final double TrussUnwoundLocation = 1300;
     public static final double SpitOutLocation = 500;
     public static double GyroSensitivity = .007;
     public static double distanceToDriveDuringAutonomous = 300;
-    
 }

@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.templates.commands.gathererWheelsOff;
 import edu.wpi.first.wpilibj.templates.commands.GathererWheelsOutWhileHeld;
 import edu.wpi.first.wpilibj.templates.commands.extendGathererOnly;
 import edu.wpi.first.wpilibj.templates.commands.ResetEncoders;
+import edu.wpi.first.wpilibj.templates.commands.TrussShot;
 import edu.wpi.first.wpilibj.templates.commands.retractGathererOnly;
 import edu.wpi.first.wpilibj.templates.commands.winchDownWhileHeld;
 import edu.wpi.first.wpilibj.templates.commands.winchUpWhileHeld;
@@ -30,7 +31,7 @@ import edu.wpi.first.wpilibj.templates.commands.winchUpWhileHeld;
  GathererInterface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-
+    private final Button TrussShotButton;
     private final Button ShooterButton;
     private final Button CockShooterButton;
     private final Button ToggleGathererButton;
@@ -44,6 +45,12 @@ public class OI {
     private final JoystickButton RetractWinch;
     private final JoystickButton ExtendWinch;
     private final JoystickButton Latch;
+    
+    
+    
+    
+    
+    
     
     private final Joystick Leftstick;
     private final Joystick Rightstick;
@@ -60,7 +67,21 @@ public class OI {
         Leftstick = new Joystick(1);
         Rightstick = new Joystick(2);
         Utilitystick = new Joystick(3);
-
+/*
+        PrepShoot = new JoystickButton(Leftstick, 1);
+        Fire =  new JoystickButton(Rightstick, 1);
+        ToggleGatherer1 = new JoystickButton(Leftstick, 2);
+        ToggleGatherer2 = new JoystickButton(Rightstick, 2);
+        ToggleGatherer3 = new JoystickButton(Utilitystick, 6);
+        ToggleGatherArms = new JoystickButton(Utilitystick, 4);
+        PrepShooter = new JoystickButton(Utilitystick, 1);
+        SpitBall1 = new JoystickButton( Utilitystick,8 );
+        SpitBall2 = new JoystickButton (Leftstick,3);
+        SpitBall3 = new JoystickButton (Rightstick,3);
+        */
+        
+        
+        
         //Button layout
         GathererIn = new JoystickButton(Leftstick, 2);
         GathererOut = new JoystickButton(Leftstick, 3);
@@ -82,9 +103,11 @@ public class OI {
         
         CockShooterButton = new JoystickButton(Utilitystick, 1);
         ToggleGatherArms = new JoystickButton(Utilitystick, 2);
+        TrussShotButton = new JoystickButton(Utilitystick, 5);
 
         //Button Ports
         CockShooterButton.whenPressed(new PrepShooter());
+        TrussShotButton.whenPressed(new TrussShot());
         ShooterButton.whenPressed(new Shoot());
         ToggleGathererButton.whenPressed(new ToggleGathererAngleAndPower());
         TankDriveButton.whenPressed(new TankDrive());
@@ -103,12 +126,17 @@ public class OI {
         
         //SmartDashboard Buttons
         SmartDashboard.putData("Winch Shooter: ", new PrepShooter());
+        SmartDashboard.putData("Truss Shot", new TrussShot());
         SmartDashboard.putData("Relesase Shooter: ", new Shoot());
         SmartDashboard.putData("Toggle Gatherer",new ToggleGathererAngleAndPower());
         SmartDashboard.putData("Toggle Gatherer On/Off: ", new ToggleGathererPower());
         SmartDashboard.putData("normal drive", new TankDrive());
         SmartDashboard.putData("Reverse Drive", new ReverseTankDrive());
         SmartDashboard.putData("reset encoders", new ResetEncoders());
+        SmartDashboard.putData("Fire", new Shoot());
+        SmartDashboard.putData("prep shooter", new PrepShooter());
+        SmartDashboard.putData("spit ball", new SpitBall());
+        SmartDashboard.putData("toggle gatherer angle", new GathererToggleAngle());
     }
 
     //Joystick Get y angle

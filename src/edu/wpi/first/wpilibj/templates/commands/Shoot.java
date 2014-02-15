@@ -42,11 +42,13 @@ public class Shoot extends CommandBase {
     protected void end() {
         subShooter.stopWinch();
         subShooter.unLatch();
+        subShooter.isPrepped = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     subShooter.stopWinch();
+    subShooter.isPrepped = false;
     }
 }

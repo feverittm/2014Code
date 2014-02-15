@@ -56,7 +56,7 @@ public class Shooter extends Subsystem {
 
     public void retractWinch() {
         if (!getLimitSwitch()) {
-            myVictor.set(-1);
+            myVictor.set(1);
         } else {
             myVictor.set(0);
         }
@@ -96,12 +96,13 @@ public class Shooter extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-
+private boolean lastTime;
     public boolean getLimitSwitch() {
         boolean value = !limitSwitch.get();
-        if (value) {
+        if (value && !lastTime) {
             resetEncoder();
         }
+        lastTime = value;
         return value;
     }
 
@@ -115,8 +116,11 @@ public class Shooter extends Subsystem {
 
     public void extendWinch() {
        if (!(getEncoder()>RobotMap.ShooterUnwoundLocation+1000)){
-               myVictor.set(1);
-       }}
+               myVictor.set(-1);
+       }else{
+           myVictor.set(0);
+       }
+    }
 
     public void resetEncoder() {
         myEncoder.reset();

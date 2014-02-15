@@ -18,5 +18,6 @@ public class PrepShooter extends CommandGroup {
         addSequential(new WinchAndLatch());
         addSequential(new RetractGathererAndWheelsIn());
         addSequential(new gathererWheelsOff());
+        addSequential(new setHasPreppedCommand());
     }
 }
