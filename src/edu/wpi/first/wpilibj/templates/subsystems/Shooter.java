@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -28,13 +29,13 @@ public class Shooter extends Subsystem {
     private Victor myVictor;
     private Encoder myEncoder;
     private DigitalInput limitSwitch;
-    private DoubleSolenoid myDoubleSolenoid;
+    private Solenoid mySolenoid;
     private boolean isEnabled;
     private Timer limitSwitchChecker = new Timer();
     public boolean isPrepped;
    
 
-    public Shooter(int victorSlot, int encoderSlot1, int encoderSlot2, int limitswitchslot, int solenoidslot1, int solenoidslot2) {
+    public Shooter(int victorSlot, int encoderSlot1, int encoderSlot2, int limitswitchslot, int solenoidslot) {
         myVictor = new Victor(victorSlot);
         LiveWindow.addActuator("Shooter", "Winch", myVictor);
         myEncoder = new Encoder(encoderSlot1, encoderSlot2);
@@ -43,8 +44,8 @@ public class Shooter extends Subsystem {
         LiveWindow.addSensor("Shooter", "Encoder", myEncoder);
         limitSwitch = new DigitalInput(limitswitchslot);
         LiveWindow.addSensor("Shooter", "Limit Switch", limitSwitch);
-        myDoubleSolenoid = new DoubleSolenoid(solenoidslot1, solenoidslot2);
-        LiveWindow.addActuator("Shooter", "latch", myDoubleSolenoid);
+        mySolenoid = new Solenoid(solenoidslot);
+        LiveWindow.addActuator("Shooter", "latch", mySolenoid);
         myPIDController = new PIDController(0, 0, 0, myEncoder, myVictor);
         LiveWindow.addActuator("Shooter", "PID", myPIDController);
         myPIDController.setAbsoluteTolerance(RobotMap.AbsolutePIDTolerance);
@@ -70,11 +71,11 @@ public class Shooter extends Subsystem {
     }
 
     public void latch() {
-        myDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
+        mySolenoid.set(true);
     }
 
     public void unLatch() {
-        myDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+        mySolenoid.set(false);
     }
 
     public void enable() {
@@ -113,7 +114,7 @@ public class Shooter extends Subsystem {
     }
 
     public void extendWinch() {
-       if (!(getEncoder()>RobotMap.DefaultSetPointForTheShooter+1000)){
+       if (!(getEncoder()>RobotMap.ShooterUnwoundLocation+1000)){
                myVictor.set(1);
        }}
 

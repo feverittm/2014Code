@@ -26,8 +26,8 @@ public class RobotMap extends RobotMapC {
     public static final int compressorSpikeSlot = Relay2;
     public static final int compressorSwitchSlot = DigitalIO_8;
     
-    public static final int LatchPunematicslot1 = Pnuematics3;
-    public static final int LatchPunematicslot2 = Pnuematics4; 
+   
+    public static final int LatchPunematicslot = Pnuematics4; 
     public static final int GathererExtendSlot = Pnuematics1;
     public static final int GathererRetractSlot = Pnuematics2;
     public static final int DriveGyroSlot = Analog1;
@@ -39,7 +39,7 @@ public class RobotMap extends RobotMapC {
     public static final double LeftEncoderDistancePerPulse = 1;
     public static final double RightEncoderDistancePerPulse = 1;
     public static final double AbsolutePIDTolerance = 3;
-    public static final double DefaultSetPointForTheShooter = 3000;
+    public static final double ShooterUnwoundLocation = 3000;
     public static final double SpitOutLocation = 500;
     public static double GyroSensitivity = .007;
     public static double distanceToDriveDuringAutonomous = 300;

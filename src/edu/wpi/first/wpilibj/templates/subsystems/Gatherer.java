@@ -83,7 +83,7 @@ public class Gatherer extends Subsystem {
     /**
      * Toggle the gatherer up/down
      */
-    public void toggleRetract() {
+    public void toggleGather() {
         if (isExtended) {
             retractGatherer();
         } else if (!isExtended) {

@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  * @author 997robotics4
  */
-public class GathererToggleExtendRetractOnly extends CommandGroup {
+public class GathererToggleAngle extends CommandGroup {
     
-    public GathererToggleExtendRetractOnly() {
+    public GathererToggleAngle() {
         addSequential(new ToggleGathererAngleAndPower());
         addSequential(new gathererWheelsOff());
         // Add Commands here:
