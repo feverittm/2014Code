@@ -26,7 +26,7 @@ public class Shoot extends CommandBase {
         myTimer.reset();
         subShooter.resetEncoder();
         myTimer.start();
-        subGatherer.extendGathererOnly();
+        subGatherer.extendGathererArms();
     }
 
     // Called repeatedly when this Command is scheduled to run

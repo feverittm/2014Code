@@ -22,7 +22,7 @@ public class RetractGathererAndWheelsIn extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        subGatherer.retractGathererOnly();
+        subGatherer.retractGathererArms();
         subGatherer.turnOnGather();
         myTimer.reset();
         myTimer.start();

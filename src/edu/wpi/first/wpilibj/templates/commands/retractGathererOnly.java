@@ -23,7 +23,7 @@ public class retractGathererOnly extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        subGatherer.retractGathererOnly();
+        subGatherer.retractGathererArms();
     }
 
     // Make this return true when this Command no longer needs to run execute()
