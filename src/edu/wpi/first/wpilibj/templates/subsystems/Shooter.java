@@ -30,6 +30,7 @@ public class Shooter extends Subsystem {
     private Encoder myEncoder;
     private DigitalInput limitSwitch;
     private Solenoid mySolenoid;
+    private DigitalInput limitSwitch2;
     private boolean isEnabled;
     private Timer limitSwitchChecker = new Timer();
     public boolean isPrepped;
@@ -42,8 +43,11 @@ public class Shooter extends Subsystem {
         myEncoder.start();
         myEncoder.reset();
         LiveWindow.addSensor("Shooter", "Encoder", myEncoder);
+        
         limitSwitch = new DigitalInput(limitswitchslot);
         LiveWindow.addSensor("Shooter", "Limit Switch", limitSwitch);
+       // limitSwitch2 = new DigitalInput(limitswitchslot2);
+       // LiveWindow.addSensor("Shooter", "Limit Switch 2", limitSwitch2);
         mySolenoid = new Solenoid(solenoidslot);
         LiveWindow.addActuator("Shooter", "latch", mySolenoid);
         myPIDController = new PIDController(0, 0, 0, myEncoder, myVictor);
@@ -96,9 +100,10 @@ public class Shooter extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-private boolean lastTime;
+
+    private boolean lastTime;
     public boolean getLimitSwitch() {
-        boolean value = !limitSwitch.get();
+        boolean value = (!limitSwitch.get());
         if (value && !lastTime) {
             resetEncoder();
         }
@@ -115,7 +120,7 @@ private boolean lastTime;
     }
 
     public void extendWinch() {
-       if (!(getEncoder()>RobotMap.ShooterUnwoundLocation+1000)){
+       if (!(getEncoder()>RobotMap.ShooterUnwoundLocation+500)){
                myVictor.set(-1);
        }else{
            myVictor.set(0);
@@ -129,4 +134,13 @@ private boolean lastTime;
     public double getEncoder() {
         return myEncoder.get();
     }
+    //Epublic boolean under200(){
+      //  if (myEncoder.get()> 200){
+        //    return false;
+        //} else if(myEncoder.get() < 200){
+        //return true;
+    //}
+    //    else return true;
+    //}
 }
+    

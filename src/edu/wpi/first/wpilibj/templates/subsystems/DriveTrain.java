@@ -56,11 +56,11 @@ public class DriveTrain extends Subsystem {
         UltraSonic = new AnalogChannel(RobotMap.UltrasonicSlot);
     }
     public void SetLeft(double speed){
-    leftMotor.set(-speed);   
+    leftMotor.set(speed);   
     }
     
     public void SetRight(double speed){
-    rightMotor.set(speed);  
+    rightMotor.set(-speed);  
     }
     
     public void SetGear(double gear){

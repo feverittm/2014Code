@@ -14,14 +14,13 @@ import edu.wpi.first.wpilibj.templates.commands.TankDrive;
 import edu.wpi.first.wpilibj.templates.commands.ToggleGathererAngleAndPower;
 import edu.wpi.first.wpilibj.templates.commands.ToggleGathererPower;
 import edu.wpi.first.wpilibj.templates.commands.UnLatchCommand;
-import edu.wpi.first.wpilibj.templates.commands.ExtendAndTurnOnGatherer;
 import edu.wpi.first.wpilibj.templates.commands.GathererToggleAngle;
-import edu.wpi.first.wpilibj.templates.commands.gathererWheelsIn;
-import edu.wpi.first.wpilibj.templates.commands.gathererWheelsOff;
 import edu.wpi.first.wpilibj.templates.commands.GathererWheelsOutWhileHeld;
+import edu.wpi.first.wpilibj.templates.commands.RapidFire;
 import edu.wpi.first.wpilibj.templates.commands.extendGathererOnly;
 import edu.wpi.first.wpilibj.templates.commands.ResetEncoders;
 import edu.wpi.first.wpilibj.templates.commands.TrussShot;
+import edu.wpi.first.wpilibj.templates.commands.driveUntilUltrasonicDistanceIN;
 import edu.wpi.first.wpilibj.templates.commands.retractGathererOnly;
 import edu.wpi.first.wpilibj.templates.commands.winchDownWhileHeld;
 import edu.wpi.first.wpilibj.templates.commands.winchUpWhileHeld;
@@ -137,11 +136,13 @@ public class OI {
         SmartDashboard.putData("prep shooter", new PrepShooter());
         SmartDashboard.putData("spit ball", new SpitBall());
         SmartDashboard.putData("toggle gatherer angle", new GathererToggleAngle());
+        SmartDashboard.putData("drive to ultrasonic distance", new driveUntilUltrasonicDistanceIN());
+        SmartDashboard.putData("rapid fire", new RapidFire());
     }
 
     //Joystick Get y angle
     public double getLeftSpeed() {
-        return deadband(Leftstick.getY());
+        return deadband(-Leftstick.getY());
 
     }
     private double deadband(double a) {
@@ -153,7 +154,7 @@ public class OI {
     }
 
     public double getRightSpeed() {
-        return deadband(Rightstick.getY());
+        return deadband(-Rightstick.getY());
     }
 
     public void SmartDashboard() {

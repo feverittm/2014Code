@@ -5,51 +5,55 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.templates.RobotMap;
-
 /**
  *
  * @author 997robotics3
  */
-public class Shoot extends CommandBase {
-    Timer myTimer = new Timer();
-    public Shoot() {
+public class driveUntilUltrasonicDistanceIN extends CommandBase {
+    
+    public driveUntilUltrasonicDistanceIN() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(subShooter);
-        requires(subGatherer);
+        requires(subDriveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        myTimer.reset();
-        myTimer.start();
-        subGatherer.extendGathererArms();
+        
+        
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        subShooter.extendWinch();    
+    subDriveTrain.SetLeft(.5 - gyroAdjust());
+    subDriveTrain.SetRight(.5 + gyroAdjust());
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {                                               // makes sure its prepped before doing anything
-        return (subShooter.getEncoder()>RobotMap.ShooterUnwoundLocation || !subShooter.isPrepped);
+    protected boolean isFinished() {
+        return subDriveTrain.getUltraSonicDistance()<100;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        subShooter.stopWinch();
-        myTimer.delay(.5);
-        subShooter.unLatch();
-        subShooter.isPrepped = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    subShooter.stopWinch();
-    subShooter.isPrepped = false;
+    }
+    private double gyroAdjust() {
+        double i = subDriveTrain.getGyro() / 10;
+        if (Math.abs(i) > .1) {
+            if (i > 0) {
+                return .1;
+            } else if (i < 0) {
+                return -.1;
+            }
+        } else {
+            return i;
+        }
+        return 0;
+
     }
 }

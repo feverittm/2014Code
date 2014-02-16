@@ -39,9 +39,10 @@ public class RobotMap extends RobotMapC {
     public static final double LeftEncoderDistancePerPulse = 1;
     public static final double RightEncoderDistancePerPulse = 1;
     public static final double AbsolutePIDTolerance = 3;
-    public static final double ShooterUnwoundLocation = 2600;
-    public static final double TrussUnwoundLocation = 1300;
+    public static final double ShooterUnwoundLocation = 1500;
+    public static final double TrussUnwoundLocation = 650;
     public static final double SpitOutLocation = 500;
     public static double GyroSensitivity = .007;
-    public static double distanceToDriveDuringAutonomous = 300;
+    public static double distanceToDriveDuringAutonomous = 1000;
+    
 }

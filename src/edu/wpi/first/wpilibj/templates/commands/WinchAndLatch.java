@@ -27,7 +27,7 @@ class WinchAndLatch extends CommandBase {
     }
 
     protected boolean isFinished() {
-        return subShooter.getLimitSwitch();
+        return subShooter.getLimitSwitch(); //|| subShooter.under200();
     }
 
     protected void end() {

@@ -27,7 +27,7 @@ public class Aimer extends Subsystem {
     
 
     public Aimer() {
-  //      cc = new CriteriaCollection();      // create the criteria for the particle filter
+     //   cc = new CriteriaCollection();      // create the criteria for the particle filter
     //    cc.addCriteria(NIVision.MeasurementType.IMAQ_MT_AREA, AREA_MINIMUM, 65535, false);
     }
    /* 
