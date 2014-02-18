@@ -33,6 +33,7 @@ public class RobotTemplate extends IterativeRobot {
     public void robotInit() {
         // instantiate the command used for the autonomous period
         autonomousCommand = new DriveThenShootAutonomousCommand();
+                
 
         // Initialize all subsystems
         CommandBase.init();
@@ -41,6 +42,7 @@ public class RobotTemplate extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         autonomousCommand.start();
+        
     }
 
     /**
@@ -65,7 +67,6 @@ public class RobotTemplate extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        
         Scheduler.getInstance().run();
         SmartDashboard();
     }

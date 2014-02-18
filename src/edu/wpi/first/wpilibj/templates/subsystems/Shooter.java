@@ -36,7 +36,7 @@ public class Shooter extends Subsystem {
     public boolean isPrepped;
    
 
-    public Shooter(int victorSlot, int encoderSlot1, int encoderSlot2, int limitswitchslot, int solenoidslot) {
+    public Shooter(int victorSlot, int encoderSlot1, int encoderSlot2, int limitswitchslot, int limitswitchslot2, int solenoidslot) {
         myVictor = new Victor(victorSlot);
         LiveWindow.addActuator("Shooter", "Winch", myVictor);
         myEncoder = new Encoder(encoderSlot1, encoderSlot2);
@@ -46,8 +46,8 @@ public class Shooter extends Subsystem {
         
         limitSwitch = new DigitalInput(limitswitchslot);
         LiveWindow.addSensor("Shooter", "Limit Switch", limitSwitch);
-       // limitSwitch2 = new DigitalInput(limitswitchslot2);
-       // LiveWindow.addSensor("Shooter", "Limit Switch 2", limitSwitch2);
+        limitSwitch2 = new DigitalInput(limitswitchslot2);
+        LiveWindow.addSensor("Shooter", "Limit Switch 2", limitSwitch2);
         mySolenoid = new Solenoid(solenoidslot);
         LiveWindow.addActuator("Shooter", "latch", mySolenoid);
         myPIDController = new PIDController(0, 0, 0, myEncoder, myVictor);
@@ -103,13 +103,20 @@ public class Shooter extends Subsystem {
 
     private boolean lastTime;
     public boolean getLimitSwitch() {
-        boolean value = (!limitSwitch.get());
+        boolean value = (!limitSwitch.get() || !limitSwitch2.get());
         if (value && !lastTime) {
             resetEncoder();
         }
         lastTime = value;
         return value;
     }
+    public boolean getRawLimit1() {
+        return !limitSwitch.get();
+    }
+    public boolean getRawLimit2() {
+        return !limitSwitch2.get();
+    }
+    
 
     public void SmartDashboard() {
         SmartDashboard.putData("Shooter", this);
@@ -117,6 +124,8 @@ public class Shooter extends Subsystem {
         SmartDashboard.putNumber("Pid setpoint", myPIDController.getSetpoint());
         SmartDashboard.putBoolean("shooter is enabled", isEnabled);
         SmartDashboard.putNumber("Shooter encoder", myEncoder.get());
+        SmartDashboard.putBoolean("limit Switch 1", getRawLimit1());
+        SmartDashboard.putBoolean("limit switch 2", getRawLimit2());
     }
 
     public void extendWinch() {

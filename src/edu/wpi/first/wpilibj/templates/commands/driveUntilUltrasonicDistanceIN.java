@@ -19,6 +19,7 @@ public class driveUntilUltrasonicDistanceIN extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        subDriveTrain.resetGyro();
         
         
     }
@@ -36,11 +37,15 @@ public class driveUntilUltrasonicDistanceIN extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        subDriveTrain.SetLeft(0);
+        subDriveTrain.SetRight(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        subDriveTrain.SetLeft(0);
+        subDriveTrain.SetRight(0);
     }
     private double gyroAdjust() {
         double i = subDriveTrain.getGyro() / 10;

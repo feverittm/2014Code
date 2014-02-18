@@ -24,13 +24,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Aimer extends Subsystem {
 
-    
+    private boolean ledon;
 
     public Aimer() {
-     //   cc = new CriteriaCollection();      // create the criteria for the particle filter
-    //    cc.addCriteria(NIVision.MeasurementType.IMAQ_MT_AREA, AREA_MINIMUM, 65535, false);
+       cc = new CriteriaCollection();      // create the criteria for the particle filter
+        cc.addCriteria(NIVision.MeasurementType.IMAQ_MT_AREA, AREA_MINIMUM, 65535, false);
     }
-   /* 
+   
     private final int AREA_MINIMUM = 150;
     final int RECTANGULARITY_LIMIT = 40;
     final int ASPECT_RATIO_LIMIT = 55;
@@ -76,8 +76,7 @@ private AxisCamera myCamera = AxisCamera.getInstance();
             
             
             
-         //   filteredImage = myImage.thresholdRGB(119,169,117,168,33,159);
-            // filteredImage = myImage.thresholdRGB(219,255,231,255,129,255);
+         
             filteredImage = myImage.thresholdRGB(226, 255, 205, 255, 0, 170);
             filteredImage = filteredImage.particleFilter(cc);
 
@@ -115,8 +114,25 @@ private AxisCamera myCamera = AxisCamera.getInstance();
         return false;
     }
    
+    /**
+     * Toggle the gatherer up/down
+     */
+    public void toggleLeds() {
+        if (ledon) {
+            LEDSOff();
+        } else if (!ledon) {
+            LEDSOn();
+        }
+
+    }
     public void LEDSOn() {
         LEDStrand.set(Relay.Value.kForward);
+        ledon = true;
+    }
+    
+    public void LEDSOff() {
+        LEDStrand.set(Relay.Value.kOff);
+        ledon = false;
     }
 
     public void initDefaultCommand() {
@@ -169,9 +185,7 @@ private AxisCamera myCamera = AxisCamera.getInstance();
     public void SmartDashboard(){
         SmartDashboard.putData("Aimer",this);
     }
-*/
 
-    protected void initDefaultCommand() {
-        
-    }
+
+    
 }

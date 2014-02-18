@@ -40,6 +40,7 @@ public abstract class CommandBase extends Command {
             RobotMap.ShooterEncoderslot,
             RobotMap.ShooterEncoderslot2,
             RobotMap.LimitSwitchslot,
+            RobotMap.LimitSwitchslot2,         
             RobotMap.LatchPunematicslot);
     public static Aimer myAimer = new Aimer();
     public static subcompressor subCompressor = new subcompressor(

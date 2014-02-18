@@ -16,6 +16,7 @@ public class RobotMap extends RobotMapC {
     public static final int GathererWheelslot = PWM3;
     public static final int Winchslot = PWM4; 
     public static final int LimitSwitchslot = DigitalIO_14;
+    public static final int LimitSwitchslot2 = DigitalIO_13;
     public static final int ShooterEncoderslot = DigitalIO_9; 
     public static final int ShooterEncoderslot2 = DigitalIO_10;
     public static final int leftEncoderSlot1 = DigitalIO_1;
@@ -44,5 +45,6 @@ public class RobotMap extends RobotMapC {
     public static final double SpitOutLocation = 500;
     public static double GyroSensitivity = .007;
     public static double distanceToDriveDuringAutonomous = 1000;
+    
     
 }

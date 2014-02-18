@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.DriveToUltrasonicThenFIre;
 import edu.wpi.first.wpilibj.templates.commands.GatherWheelInWhileHeld;
 import edu.wpi.first.wpilibj.templates.commands.LatchCommand;
 import edu.wpi.first.wpilibj.templates.commands.ReverseTankDrive;
@@ -16,6 +17,7 @@ import edu.wpi.first.wpilibj.templates.commands.ToggleGathererPower;
 import edu.wpi.first.wpilibj.templates.commands.UnLatchCommand;
 import edu.wpi.first.wpilibj.templates.commands.GathererToggleAngle;
 import edu.wpi.first.wpilibj.templates.commands.GathererWheelsOutWhileHeld;
+import edu.wpi.first.wpilibj.templates.commands.Lightup;
 import edu.wpi.first.wpilibj.templates.commands.RapidFire;
 import edu.wpi.first.wpilibj.templates.commands.extendGathererOnly;
 import edu.wpi.first.wpilibj.templates.commands.ResetEncoders;
@@ -44,6 +46,7 @@ public class OI {
     private final JoystickButton RetractWinch;
     private final JoystickButton ExtendWinch;
     private final JoystickButton Latch;
+    private final Button LightButton;
     
     
     
@@ -56,6 +59,7 @@ public class OI {
     private final Joystick Utilitystick;
     private final JoystickButton UnLatch;
     private final JoystickButton ToggleGatherArms;
+    private final JoystickButton QuickShotButton;
     
 
     /**
@@ -92,7 +96,6 @@ public class OI {
         RetractWinch = new JoystickButton(Rightstick, 4); 
         ExtendWinch = new JoystickButton(Rightstick,5);
         
-        
         ShooterButton = new JoystickButton(Rightstick, 1);
         ToggleGathererButton = new JoystickButton(Rightstick, 2);
         SpitBallButton = new JoystickButton(Rightstick, 3);
@@ -103,7 +106,9 @@ public class OI {
         CockShooterButton = new JoystickButton(Utilitystick, 1);
         ToggleGatherArms = new JoystickButton(Utilitystick, 2);
         TrussShotButton = new JoystickButton(Utilitystick, 5);
-
+        QuickShotButton = new JoystickButton(Utilitystick, 6);
+        LightButton = new JoystickButton(Utilitystick, 9);
+        
         //Button Ports
         CockShooterButton.whenPressed(new PrepShooter());
         TrussShotButton.whenPressed(new TrussShot());
@@ -121,7 +126,8 @@ public class OI {
         RetractWinch.whileHeld(new winchDownWhileHeld());
         ExtendWinch.whileHeld(new winchUpWhileHeld());
         ToggleGatherArms.whenPressed(new GathererToggleAngle());
-        
+        QuickShotButton.whenPressed(new RapidFire());
+        LightButton.whenPressed(new Lightup());
         
         //SmartDashboard Buttons
         SmartDashboard.putData("Winch Shooter: ", new PrepShooter());
@@ -138,6 +144,9 @@ public class OI {
         SmartDashboard.putData("toggle gatherer angle", new GathererToggleAngle());
         SmartDashboard.putData("drive to ultrasonic distance", new driveUntilUltrasonicDistanceIN());
         SmartDashboard.putData("rapid fire", new RapidFire());
+        SmartDashboard.putData("drive to ultrasonic then fire", new DriveToUltrasonicThenFIre());
+        SmartDashboard.putData("LIGHT UP THE ROBOT", new Lightup());
+    
     }
 
     //Joystick Get y angle
