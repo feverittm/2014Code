@@ -34,8 +34,14 @@ public class Shoot extends CommandBase {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {                                               // makes sure its prepped before doing anything
-        return (subShooter.getEncoder()>RobotMap.ShooterUnwoundLocation || !subShooter.isPrepped);
+    protected boolean isFinished() {              // makes sure its prepped before doing anything
+        if (myTimer.get() > 2.3){
+            System.out.println("Failsafe:  Stop Winch unwind on timer > 2.3: " + myTimer.get());
+            return(true);
+        }
+        return (subShooter.getEncoder()>RobotMap.ShooterUnwoundLocation || 
+                myTimer.get() > 2.3 ||
+                !subShooter.isPrepped);
     }
 
     // Called once after isFinished returns true
