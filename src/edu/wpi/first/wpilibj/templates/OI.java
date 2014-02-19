@@ -46,6 +46,7 @@ public class OI {
     private final JoystickButton RetractWinch;
     private final JoystickButton ExtendWinch;
     private final JoystickButton Latch;
+    private final JoystickButton PrepShooter;
     private final Button LightButton;
     
     
@@ -101,7 +102,7 @@ public class OI {
         SpitBallButton = new JoystickButton(Rightstick, 3);
         ReverseDriveButton = new JoystickButton(Rightstick, 8);
         TankDriveButton = new JoystickButton(Rightstick, 9); 
-        
+        PrepShooter = new JoystickButton(Rightstick, 11);
         
         CockShooterButton = new JoystickButton(Utilitystick, 1);
         ToggleGatherArms = new JoystickButton(Utilitystick, 2);
@@ -128,6 +129,7 @@ public class OI {
         ToggleGatherArms.whenPressed(new GathererToggleAngle());
         QuickShotButton.whenPressed(new RapidFire());
         LightButton.whenPressed(new Lightup());
+        PrepShooter.whenPressed(new PrepShooter());
         
         //SmartDashboard Buttons
         SmartDashboard.putData("Winch Shooter: ", new PrepShooter());

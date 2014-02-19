@@ -37,7 +37,11 @@ public class TrussShot extends CommandBase {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {                                               // makes sure its prepped before doing anything
+    protected boolean isFinished() {       // makes sure its prepped before doing anything
+        if (myTimer.get() > RobotMap.WinchoutTrussFailsafeTimer){
+            System.out.println("Failsafe: Truss-shot winch out exceeds timeout:" + myTimer.get());
+            return (subShooter.isPrepped);
+        }
         return (subShooter.getEncoder()>RobotMap.TrussUnwoundLocation || !subShooter.isPrepped);
     }
 
@@ -45,7 +49,7 @@ public class TrussShot extends CommandBase {
     protected void end() {
         //delay
         subShooter.stopWinch();
-        myTimer.delay(0.5);
+        myTimer.delay(0.4);
         subShooter.unLatch();
         subShooter.isPrepped = false;
     }

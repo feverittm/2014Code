@@ -36,7 +36,6 @@ public class RobotMap extends RobotMapC {
      
     //non-slot constants
     public static final double UltraSonicCalibration = 0.009766;
-    public static final double StartingGear = 1;
     public static final double LeftEncoderDistancePerPulse = 1;
     public static final double RightEncoderDistancePerPulse = 1;
     public static final double AbsolutePIDTolerance = 3;
@@ -45,6 +44,8 @@ public class RobotMap extends RobotMapC {
     public static final double SpitOutLocation = 500;
     public static double GyroSensitivity = .007;
     public static double distanceToDriveDuringAutonomous = 1000;
+    public static double WinchoutFailsafeTimer = 2;
+    public static double WinchoutTrussFailsafeTimer = 1.5;
     
     
 }

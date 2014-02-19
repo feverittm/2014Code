@@ -52,7 +52,6 @@ public class DriveTrain extends Subsystem {
         myGyro = new Gyro(gyroSlot);
         myGyro.setSensitivity(RobotMap.GyroSensitivity);
         LiveWindow.addSensor("Drive Train", "gyro", myGyro);
-        gear = RobotMap.StartingGear;
         UltraSonic = new AnalogChannel(RobotMap.UltrasonicSlot);
     }
     public void SetLeft(double speed){
