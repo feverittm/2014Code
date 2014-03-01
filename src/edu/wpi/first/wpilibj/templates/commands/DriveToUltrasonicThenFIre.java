@@ -14,9 +14,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DriveToUltrasonicThenFIre extends CommandGroup {
     
     public DriveToUltrasonicThenFIre() {
-        addSequential(new extendGathererOnly());
-        addSequential(new PrepShooter());
+       // addSequential(new extendGathererOnly());
+        addSequential(new Winch2s());
         addSequential(new driveUntilUltrasonicDistanceIN());
+        addSequential(new PrepShooter());
         addSequential(new Shoot());
     }
     

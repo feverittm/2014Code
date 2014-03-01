@@ -5,38 +5,31 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.Timer;
-
 /**
  *
- * @author 997robotics4
+ * @author Team 997
  */
-public class RetractGathererAndWheelsIn extends CommandBase {
-    private Timer myTimer = new Timer();
+public class LEDSoff extends CommandBase {
     
-    public RetractGathererAndWheelsIn() {
-        // Use requires() here to declare subsystem dependencies
+    public LEDSoff() {
+        requires(myLED);
+// Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(subGatherer);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        subGatherer.retractGathererArms();
-        subGatherer.turnOnGather();
-        myTimer.reset();
-        myTimer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        myLED.AllOff();
         
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-         //stops the command after 2 second
-        return myTimer.get() >= 1;
+        return true;
     }
 
     // Called once after isFinished returns true

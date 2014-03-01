@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.templates.subsystems.Aimer;
 import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.templates.subsystems.Gatherer;
+import edu.wpi.first.wpilibj.templates.subsystems.LEDSub;
 import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 import edu.wpi.first.wpilibj.templates.subsystems.subcompressor;
 
@@ -23,6 +24,7 @@ public abstract class CommandBase extends Command {
 
     public static OI oi;
     // Create a single static instance of all of your subsystems
+    public static LEDSub myLED = new LEDSub();
     public static Gatherer subGatherer = new Gatherer(
             RobotMap.GathererWheelslot,
             RobotMap.GathererExtendSlot,

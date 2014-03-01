@@ -49,6 +49,7 @@ public class Shoot extends CommandBase {
         myTimer.delay(.4);
         subShooter.unLatch();
         subShooter.isPrepped = false;
+        myLED.ToggleGreen();
     }
 
     // Called when another command which requires one or more of the same

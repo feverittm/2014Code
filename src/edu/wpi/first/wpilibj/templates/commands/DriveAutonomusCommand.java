@@ -5,21 +5,16 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
  *
- * @author 997robotics4
+ * @author Team 997
  */
-public class DriveThenShootAutonomousCommand extends CommandGroup {
-public Timer myTimer;
-    public DriveThenShootAutonomousCommand() {
-        addSequential(new Winch2s());
+public class DriveAutonomusCommand extends CommandGroup {
+    
+    public DriveAutonomusCommand() {
         addSequential(new DriveToSetpoint(RobotMap.distanceToDriveDuringAutonomous));
-        addSequential(new PrepShooter());
-        addSequential(new Shoot());
-        
     }
 }

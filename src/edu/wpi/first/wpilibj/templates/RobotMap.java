@@ -46,6 +46,10 @@ public class RobotMap extends RobotMapC {
     public static double distanceToDriveDuringAutonomous = 1000;
     public static double WinchoutFailsafeTimer = 2;
     public static double WinchoutTrussFailsafeTimer = 1.5;
+    public static int redLightSlot = DigitalIO_6;
+    public static int blueLightSlot = DigitalIO_5;
+    public static int greenLightSlot = DigitalIO_7;
+    public static boolean isRedAlliance = false;
     
     
 }

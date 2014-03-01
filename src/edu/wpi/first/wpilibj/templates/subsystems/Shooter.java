@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
+import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import java.util.Timer;
 
 
@@ -80,6 +81,12 @@ public class Shooter extends Subsystem {
 
     public void unLatch() {
         mySolenoid.set(false);
+        CommandBase.myLED.AllOff();
+        if (RobotMap.isRedAlliance){
+        CommandBase.myLED.redON();
+        } else {
+            CommandBase.myLED.blueOn();
+        }
     }
 
     public void enable() {

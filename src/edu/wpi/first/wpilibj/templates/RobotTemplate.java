@@ -13,7 +13,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import edu.wpi.first.wpilibj.templates.commands.DriveAutonomusCommand;
 import edu.wpi.first.wpilibj.templates.commands.DriveThenShootAutonomousCommand;
+import edu.wpi.first.wpilibj.templates.commands.DriveToUltrasonicThenFIre;
+import edu.wpi.first.wpilibj.templates.commands.driveUntilUltrasonicDistanceIN;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,7 +35,14 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void robotInit() {
         // instantiate the command used for the autonomous period
-        autonomousCommand = new DriveThenShootAutonomousCommand();
+        if (RobotMap.isRedAlliance){
+            CommandBase.myLED.redON();
+        } else {
+            CommandBase.myLED.blueOn();
+        }
+        
+        autonomousCommand = new DriveToUltrasonicThenFIre();
+        
                 
 
         // Initialize all subsystems
@@ -42,6 +52,11 @@ public class RobotTemplate extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         autonomousCommand.start();
+        if (RobotMap.isRedAlliance){
+            CommandBase.myLED.redON();
+        } else {
+            CommandBase.myLED.blueOn();
+        }
         
     }
 
@@ -57,6 +72,11 @@ public class RobotTemplate extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
+        if (RobotMap.isRedAlliance){
+            CommandBase.myLED.redON();
+        } else {
+            CommandBase.myLED.blueOn();
+        }
         
         autonomousCommand.cancel();
         CommandBase.subGatherer.retractGatherer();

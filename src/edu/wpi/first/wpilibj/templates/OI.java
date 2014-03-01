@@ -22,7 +22,10 @@ import edu.wpi.first.wpilibj.templates.commands.RapidFire;
 import edu.wpi.first.wpilibj.templates.commands.extendGathererOnly;
 import edu.wpi.first.wpilibj.templates.commands.ResetEncoders;
 import edu.wpi.first.wpilibj.templates.commands.TrussShot;
+import edu.wpi.first.wpilibj.templates.commands.blueLED;
 import edu.wpi.first.wpilibj.templates.commands.driveUntilUltrasonicDistanceIN;
+import edu.wpi.first.wpilibj.templates.commands.greenLED;
+import edu.wpi.first.wpilibj.templates.commands.redLED;
 import edu.wpi.first.wpilibj.templates.commands.retractGathererOnly;
 import edu.wpi.first.wpilibj.templates.commands.winchDownWhileHeld;
 import edu.wpi.first.wpilibj.templates.commands.winchUpWhileHeld;
@@ -47,7 +50,7 @@ public class OI {
     private final JoystickButton ExtendWinch;
     private final JoystickButton Latch;
     private final JoystickButton PrepShooter;
-    private final Button LightButton;
+    
     
     
     
@@ -61,6 +64,9 @@ public class OI {
     private final JoystickButton UnLatch;
     private final JoystickButton ToggleGatherArms;
     private final JoystickButton QuickShotButton;
+    private final JoystickButton redButton;
+    private final JoystickButton blueButton;
+    
     
 
     /**
@@ -108,7 +114,8 @@ public class OI {
         ToggleGatherArms = new JoystickButton(Utilitystick, 2);
         TrussShotButton = new JoystickButton(Utilitystick, 5);
         QuickShotButton = new JoystickButton(Utilitystick, 6);
-        LightButton = new JoystickButton(Utilitystick, 9);
+        redButton = new JoystickButton(Utilitystick, 9);
+        blueButton = new JoystickButton(Utilitystick, 10);
         
         //Button Ports
         CockShooterButton.whenPressed(new PrepShooter());
@@ -128,7 +135,7 @@ public class OI {
         ExtendWinch.whileHeld(new winchUpWhileHeld());
         ToggleGatherArms.whenPressed(new GathererToggleAngle());
         QuickShotButton.whenPressed(new RapidFire());
-        LightButton.whenPressed(new Lightup());
+        //LightButton.whenPressed(new Lightup());
         PrepShooter.whenPressed(new PrepShooter());
         
         //SmartDashboard Buttons
@@ -148,6 +155,9 @@ public class OI {
         SmartDashboard.putData("rapid fire", new RapidFire());
         SmartDashboard.putData("drive to ultrasonic then fire", new DriveToUltrasonicThenFIre());
         SmartDashboard.putData("LIGHT UP THE ROBOT", new Lightup());
+        SmartDashboard.putData("green LED", new greenLED());
+        SmartDashboard.putData("red LED", new redLED());
+        SmartDashboard.putData("blue LED", new blueLED());
     
     }
 

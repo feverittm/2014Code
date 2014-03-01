@@ -7,13 +7,13 @@ package edu.wpi.first.wpilibj.templates.commands;
 
 /**
  *
- * @author 997robotics3
+ * @author Team 997
  */
-public class driveUntilUltrasonicDistanceIN extends CommandBase {
+public class drivetoUltraSonic2 extends CommandBase {
     
-    public driveUntilUltrasonicDistanceIN() {
+    public drivetoUltraSonic2() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        // eg. requires(chassis);requires(subDriveTrain);
         requires(subDriveTrain);
     }
 
@@ -26,13 +26,13 @@ public class driveUntilUltrasonicDistanceIN extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-            subDriveTrain.SetLeft(1 - gyroAdjust());
-            subDriveTrain.SetRight(1 + gyroAdjust());
+            subDriveTrain.SetLeft(.5 - gyroAdjust());
+            subDriveTrain.SetRight(.5 + gyroAdjust());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return subDriveTrain.getUltraSonicDistance()<100;
+        return subDriveTrain.getUltraSonicDistance()<200;
     }
 
     // Called once after isFinished returns true

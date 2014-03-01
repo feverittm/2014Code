@@ -7,58 +7,36 @@ package edu.wpi.first.wpilibj.templates.commands;
 
 /**
  *
- * @author 997robotics3
+ * @author Team 997
  */
-public class driveUntilUltrasonicDistanceIN extends CommandBase {
+public class blueLED extends CommandBase {
     
-    public driveUntilUltrasonicDistanceIN() {
+    public blueLED() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(subDriveTrain);
+        requires(myLED);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        subDriveTrain.resetGyro();
-        
-        
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-            subDriveTrain.SetLeft(1 - gyroAdjust());
-            subDriveTrain.SetRight(1 + gyroAdjust());
+        myLED.ToggleBlue();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return subDriveTrain.getUltraSonicDistance()<100;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        subDriveTrain.SetLeft(0);
-        subDriveTrain.SetRight(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        subDriveTrain.SetLeft(0);
-        subDriveTrain.SetRight(0);
-    }
-    private double gyroAdjust() {
-        double i = subDriveTrain.getGyro() / 10;
-        if (Math.abs(i) > .1) {
-            if (i > 0) {
-                return .1;
-            } else if (i < 0) {
-                return -.1;
-            }
-        } else {
-            return i;
-        }
-        return 0;
-
     }
 }
