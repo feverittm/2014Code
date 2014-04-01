@@ -6,6 +6,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -82,10 +83,10 @@ public class Shooter extends Subsystem {
     public void unLatch() {
         mySolenoid.set(false);
         CommandBase.myLED.AllOff();
-        if (RobotMap.isRedAlliance){
+        if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed){
         CommandBase.myLED.redON();
-        } else {
-            CommandBase.myLED.blueOn();
+        } else { 
+        CommandBase.myLED.blueOn();
         }
     }
 

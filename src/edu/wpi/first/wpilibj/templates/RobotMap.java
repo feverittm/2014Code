@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.AnalogChannel;
  * floating around.
  */
 public class RobotMap extends RobotMapC {
-   
+   //encoders are 1540 counts for 75 inches
     
     public static final int LeftDriveslot = PWM1;
     public static final int RightDriveslot = PWM2;
@@ -43,13 +43,12 @@ public class RobotMap extends RobotMapC {
     public static final double TrussUnwoundLocation = 650;
     public static final double SpitOutLocation = 500;
     public static double GyroSensitivity = .007;
-    public static double distanceToDriveDuringAutonomous = 1000;
+    public static double distanceToDriveDuringAutonomous = 18*12*20.533;
     public static double WinchoutFailsafeTimer = 2;
     public static double WinchoutTrussFailsafeTimer = 1.5;
     public static int redLightSlot = DigitalIO_6;
     public static int blueLightSlot = DigitalIO_5;
     public static int greenLightSlot = DigitalIO_7;
-    public static boolean isRedAlliance = false;
     
     
 }

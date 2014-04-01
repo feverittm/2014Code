@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.DriveThenShootAutonomousCommand;
 import edu.wpi.first.wpilibj.templates.commands.DriveToUltrasonicThenFIre;
 import edu.wpi.first.wpilibj.templates.commands.GatherWheelInWhileHeld;
 import edu.wpi.first.wpilibj.templates.commands.LatchCommand;
@@ -18,9 +19,11 @@ import edu.wpi.first.wpilibj.templates.commands.UnLatchCommand;
 import edu.wpi.first.wpilibj.templates.commands.GathererToggleAngle;
 import edu.wpi.first.wpilibj.templates.commands.GathererWheelsOutWhileHeld;
 import edu.wpi.first.wpilibj.templates.commands.Lightup;
+import edu.wpi.first.wpilibj.templates.commands.PrepShooter2;
 import edu.wpi.first.wpilibj.templates.commands.RapidFire;
 import edu.wpi.first.wpilibj.templates.commands.extendGathererOnly;
 import edu.wpi.first.wpilibj.templates.commands.ResetEncoders;
+import edu.wpi.first.wpilibj.templates.commands.Shoot3;
 import edu.wpi.first.wpilibj.templates.commands.TrussShot;
 import edu.wpi.first.wpilibj.templates.commands.blueLED;
 import edu.wpi.first.wpilibj.templates.commands.driveUntilUltrasonicDistanceIN;
@@ -48,7 +51,7 @@ public class OI {
     private final JoystickButton GathererRetract;
     private final JoystickButton RetractWinch;
     private final JoystickButton ExtendWinch;
-    private final JoystickButton Latch;
+    private final JoystickButton Shooter2Button;
     private final JoystickButton PrepShooter;
     
     
@@ -62,6 +65,7 @@ public class OI {
     private final Joystick Rightstick;
     private final Joystick Utilitystick;
     private final JoystickButton UnLatch;
+    private final JoystickButton Latch;
     private final JoystickButton ToggleGatherArms;
     private final JoystickButton QuickShotButton;
     private final JoystickButton redButton;
@@ -97,8 +101,9 @@ public class OI {
         GathererOut = new JoystickButton(Leftstick, 3);
         GathererExtend = new JoystickButton(Leftstick, 4);
         GathererRetract = new JoystickButton(Leftstick, 5);
-        Latch = new JoystickButton(Leftstick, 1);
+        Shooter2Button = new JoystickButton(Leftstick, 1);
         UnLatch = new JoystickButton(Leftstick, 7);
+        Latch = new JoystickButton(Leftstick, 6);
         
         RetractWinch = new JoystickButton(Rightstick, 4); 
         ExtendWinch = new JoystickButton(Rightstick,5);
@@ -118,15 +123,16 @@ public class OI {
         blueButton = new JoystickButton(Utilitystick, 10);
         
         //Button Ports
-        CockShooterButton.whenPressed(new PrepShooter());
+        CockShooterButton.whenPressed(new PrepShooter2());//PrepShooter());
         TrussShotButton.whenPressed(new TrussShot());
-        ShooterButton.whenPressed(new Shoot());
+        ShooterButton.whenPressed(new Shoot3());//Shoot());
         ToggleGathererButton.whenPressed(new ToggleGathererAngleAndPower());
         TankDriveButton.whenPressed(new TankDrive());
         ReverseDriveButton.whenPressed(new ReverseTankDrive());
         SpitBallButton.whenPressed(new SpitBall());
-        Latch.whenPressed(new LatchCommand());
+        Shooter2Button.whenPressed(new Shoot3());//Shoot());
         UnLatch.whenPressed(new UnLatchCommand());
+        Latch.whenPressed(new LatchCommand());
         GathererIn.whileHeld(new GatherWheelInWhileHeld());
         GathererOut.whileHeld(new GathererWheelsOutWhileHeld());
         GathererExtend.whenPressed(new extendGathererOnly());
@@ -136,7 +142,7 @@ public class OI {
         ToggleGatherArms.whenPressed(new GathererToggleAngle());
         QuickShotButton.whenPressed(new RapidFire());
         //LightButton.whenPressed(new Lightup());
-        PrepShooter.whenPressed(new PrepShooter());
+        PrepShooter.whenPressed(new PrepShooter2());//PrepShooter());
         
         //SmartDashboard Buttons
         SmartDashboard.putData("Winch Shooter: ", new PrepShooter());
@@ -158,6 +164,7 @@ public class OI {
         SmartDashboard.putData("green LED", new greenLED());
         SmartDashboard.putData("red LED", new redLED());
         SmartDashboard.putData("blue LED", new blueLED());
+        SmartDashboard.putData("Drive to Encoder distance", new DriveThenShootAutonomousCommand());
     
     }
 

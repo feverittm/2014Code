@@ -58,10 +58,15 @@ public class LEDSub extends Subsystem {
     }
     public void redON(){
         r = true;
+        blueSolenoid.set(false);
+        greenSolenoid.set(false);
         redSolenoid.set(true);
     }
     public void blueOn() {
         b = true;
+        
+        redSolenoid.set(false);
+        greenSolenoid.set(false);
         blueSolenoid.set(true);
     }
 

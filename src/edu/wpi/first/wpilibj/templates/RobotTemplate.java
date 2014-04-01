@@ -8,15 +8,13 @@
 package edu.wpi.first.wpilibj.templates;
 
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
-import edu.wpi.first.wpilibj.templates.commands.DriveAutonomusCommand;
-import edu.wpi.first.wpilibj.templates.commands.DriveThenShootAutonomousCommand;
 import edu.wpi.first.wpilibj.templates.commands.DriveToUltrasonicThenFIre;
-import edu.wpi.first.wpilibj.templates.commands.driveUntilUltrasonicDistanceIN;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,7 +33,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void robotInit() {
         // instantiate the command used for the autonomous period
-        if (RobotMap.isRedAlliance){
+          if(DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed){
             CommandBase.myLED.redON();
         } else {
             CommandBase.myLED.blueOn();
@@ -52,12 +50,11 @@ public class RobotTemplate extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         autonomousCommand.start();
-        if (RobotMap.isRedAlliance){
+        if(DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed){
             CommandBase.myLED.redON();
         } else {
             CommandBase.myLED.blueOn();
         }
-        
     }
 
     /**
@@ -66,13 +63,20 @@ public class RobotTemplate extends IterativeRobot {
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
+    public void disabledInit() {
+        if(DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed){
+            CommandBase.myLED.redON();
+        } else {
+            CommandBase.myLED.blueOn();
+        }
+    }
 
     public void teleopInit() {
 	// This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if (RobotMap.isRedAlliance){
+         if(DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed){
             CommandBase.myLED.redON();
         } else {
             CommandBase.myLED.blueOn();

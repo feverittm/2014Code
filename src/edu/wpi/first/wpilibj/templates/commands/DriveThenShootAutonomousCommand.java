@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.templates.RobotMap;
 public class DriveThenShootAutonomousCommand extends CommandGroup {
 public Timer myTimer;
     public DriveThenShootAutonomousCommand() {
-        addSequential(new Winch2s());
+        addSequential(new Winch1AndAHalfS());
         addSequential(new DriveToSetpoint(RobotMap.distanceToDriveDuringAutonomous));
         addSequential(new PrepShooter());
         addSequential(new Shoot());
