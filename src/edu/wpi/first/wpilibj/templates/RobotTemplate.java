@@ -27,18 +27,23 @@ public class RobotTemplate extends IterativeRobot {
 
     Command autonomousCommand;
 
+    // utility function to set the color of the LED to match the
+    // team's alliance color.
+    public void setLedColor() {
+        if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed) {
+            CommandBase.myLED.redON();
+        } else {
+            CommandBase.myLED.blueOn();
+        }
+    }
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
         // instantiate the command used for the autonomous period
-          if(DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed){
-            CommandBase.myLED.redON();
-        } else {
-            CommandBase.myLED.blueOn();
-        }
-        
+        setLedColor();
+
         autonomousCommand = new DriveToUltrasonicThenFIre();
         
                 
@@ -50,11 +55,8 @@ public class RobotTemplate extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         autonomousCommand.start();
-        if(DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed){
-            CommandBase.myLED.redON();
-        } else {
-            CommandBase.myLED.blueOn();
-        }
+    
+        setLedColor();
     }
 
     /**
@@ -64,11 +66,7 @@ public class RobotTemplate extends IterativeRobot {
         Scheduler.getInstance().run();
     }
     public void disabledInit() {
-        if(DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed){
-            CommandBase.myLED.redON();
-        } else {
-            CommandBase.myLED.blueOn();
-        }
+        setLedColor();
     }
 
     public void teleopInit() {
@@ -76,13 +74,9 @@ public class RobotTemplate extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-         if(DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed){
-            CommandBase.myLED.redON();
-        } else {
-            CommandBase.myLED.blueOn();
-        }
-        
         autonomousCommand.cancel();
+        
+        setLedColor();
         CommandBase.subGatherer.retractGatherer();
         CommandBase.subShooter.unLatch();
     }
