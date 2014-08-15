@@ -12,35 +12,53 @@ import edu.wpi.first.wpilibj.Timer;
  * @author Team 997
  */
 public class Delay extends CommandBase {
-    private Timer myTimer = new Timer();
-    
-    private double delay;
+
+    private final Timer myTimer = new Timer();
+
+    private final double delay;
+
+    /**
+     * Command to delay a given amount of time
+     *
+     * @param delay
+     */
     public Delay(double delay) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         this.delay = delay;
     }
 
-    // Called just before this Command runs the first time
+    /**
+     * no initialization
+     */
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    /**
+     * we just want to wait a given delay
+     */
     protected void execute() {
         myTimer.delay(delay);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    /**
+     * are we done yet?
+     *
+     * @return
+     */
     protected boolean isFinished() {
         return true;
     }
 
-    // Called once after isFinished returns true
+    /**
+     * Any Cleanup needed at the end of the command?
+     */
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    /**
+     * Do we want to do anything if the command is stopped?
+     */
     protected void interrupted() {
     }
 }

@@ -51,9 +51,9 @@ public class subcompressor extends Subsystem {
     }
 
     /**
-     * Default command is to start the compressor.  Doing it this way instead
-     * of in the initializer will put it in a separate thread and not lock the
-     * main control thread.
+     * Default command is to start the compressor. Doing it this way instead of
+     * in the initializer will put it in a separate thread and not lock the main
+     * control thread.
      */
     public void initDefaultCommand() {
     }

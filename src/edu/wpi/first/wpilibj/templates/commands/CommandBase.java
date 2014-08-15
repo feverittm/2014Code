@@ -1,12 +1,10 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.subsystems.Aimer;
 import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
-
 import edu.wpi.first.wpilibj.templates.subsystems.Gatherer;
 import edu.wpi.first.wpilibj.templates.subsystems.LEDSub;
 import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
@@ -42,13 +40,16 @@ public abstract class CommandBase extends Command {
             RobotMap.ShooterEncoderslot,
             RobotMap.ShooterEncoderslot2,
             RobotMap.LimitSwitchslot,
-            RobotMap.LimitSwitchslot2,         
+            RobotMap.LimitSwitchslot2,
             RobotMap.LatchPunematicslot);
     public static Aimer myAimer = new Aimer();
     public static subcompressor subCompressor = new subcompressor(
             RobotMap.compressorSwitchSlot,
             RobotMap.compressorSpikeSlot);
 
+    /**
+     * Initialize the command subsystem
+     */
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
@@ -60,10 +61,17 @@ public abstract class CommandBase extends Command {
         // Show what command your subsystem is running on the SmartDashboard
     }
 
+    /**
+     * Pull in the other methods of the class and call be name
+     * @param name 
+     */
     public CommandBase(String name) {
         super(name);
     }
 
+    /**
+     * by default just call the main instance
+     */
     public CommandBase() {
         super();
     }

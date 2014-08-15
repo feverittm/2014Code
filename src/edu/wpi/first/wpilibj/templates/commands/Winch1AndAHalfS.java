@@ -6,44 +6,58 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.templates.RobotMap;
-
 
 /**
  *
  * @author Team 997
  */
 public class Winch1AndAHalfS extends CommandBase {
+
     Timer myTimer = new Timer();
+
+    /**
+     * Winch down for 1.5 second so the ball won't fall out during autonomous
+     */
     public Winch1AndAHalfS() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(subShooter);
     }
 
-    // Called just before this Command runs the first time
+    /**
+     * Start the timer when we want to begin this command
+     */
     protected void initialize() {
-          myTimer.reset();
+        myTimer.reset();
         myTimer.start();
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    /**
+     * start the winch...
+     */
     protected void execute() {
         subShooter.retractWinch();
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    /**
+     * Have we waited 1.5 seconds...
+     *
+     * @return
+     */
     protected boolean isFinished() {
-        return (myTimer.get()>1.5);
+        return (myTimer.get() > 1.5);
     }
 
-    // Called once after isFinished returns true
+    /**
+     * If we pulled down long enough then stop.
+     */
     protected void end() {
         subShooter.stopWinch();
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    /**
+     * If the command is ever interrupted then we need to stop too.
+     */
     protected void interrupted() {
         subShooter.stopWinch();
     }
