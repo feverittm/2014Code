@@ -74,18 +74,6 @@ public class OI {
         Leftstick = new Joystick(1);
         Rightstick = new Joystick(2);
         Utilitystick = new Joystick(3);
-        /*
-         PrepShoot = new JoystickButton(Leftstick, 1);
-         Fire =  new JoystickButton(Rightstick, 1);
-         ToggleGatherer1 = new JoystickButton(Leftstick, 2);
-         ToggleGatherer2 = new JoystickButton(Rightstick, 2);
-         ToggleGatherer3 = new JoystickButton(Utilitystick, 6);
-         ToggleGatherArms = new JoystickButton(Utilitystick, 4);
-         PrepShooter = new JoystickButton(Utilitystick, 1);
-         SpitBall1 = new JoystickButton( Utilitystick,8 );
-         SpitBall2 = new JoystickButton (Leftstick,3);
-         SpitBall3 = new JoystickButton (Rightstick,3);
-         */
 
         //Define the Button layout...
         GathererIn = new JoystickButton(Leftstick, 2);

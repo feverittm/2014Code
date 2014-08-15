@@ -17,40 +17,41 @@ import edu.wpi.first.wpilibj.image.NIVisionException;
 import edu.wpi.first.wpilibj.image.ParticleAnalysisReport;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
 /**
  *
- * @author 997robotics3
+ * @author 997robotics
  */
 public class Aimer extends Subsystem {
 
     private boolean ledon;
 
+    /**
+     * Method to identify the hot goal
+     */
     public Aimer() {
-       cc = new CriteriaCollection();      // create the criteria for the particle filter
+        cc = new CriteriaCollection();      // create the criteria for the particle filter
         cc.addCriteria(NIVision.MeasurementType.IMAQ_MT_AREA, AREA_MINIMUM, 65535, false);
     }
-   
+
     private final int AREA_MINIMUM = 150;
     final int RECTANGULARITY_LIMIT = 40;
     final int ASPECT_RATIO_LIMIT = 55;
 
-    
-    
+    /**
+     * Public variable connected to spike tied to circle LED on the camera
+     */
     public Relay LEDStrand = new Relay(1);
 
     CriteriaCollection cc;
-private AxisCamera myCamera = AxisCamera.getInstance();
+    private AxisCamera myCamera = AxisCamera.getInstance();
     private ColorImage myImage;
     private BinaryImage filteredImage;
-    
-    
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    
-    
-
+    /**
+     * Aim visual recognition score
+     */
     public class Scores {
 
         double rectangularity;
@@ -58,30 +59,22 @@ private AxisCamera myCamera = AxisCamera.getInstance();
         double aspectRatioHorizontal;
     }
 
+    /**
+     *
+     * @return tell us if we see the hot goal
+     */
     public boolean goalIsHot() {
 
         try {
 
         //
-            
-            
-            
             myImage = myCamera.getImage();
-            
-            
-            
-            
-            
-            
-            
-            
-            
-         
+
             filteredImage = myImage.thresholdRGB(226, 255, 205, 255, 0, 170);
             filteredImage = filteredImage.particleFilter(cc);
 
             Scores scores[] = new Scores[filteredImage.getNumberParticles()];
-                /// not creating the objects in array, just the array.
+            /// not creating the objects in array, just the array.
             ///creating a number of "scores" equal to the number objects in the binImage.
             int verticalTargetCount, horizontalTargetCount = 0;
 
@@ -110,12 +103,12 @@ private AxisCamera myCamera = AxisCamera.getInstance();
         } catch (NIVisionException ex) {
             ex.printStackTrace();
         }
-            SmartDashboard.putBoolean("goal is hot", false);
+        SmartDashboard.putBoolean("goal is hot", false);
         return false;
     }
-   
+
     /**
-     * Toggle the gatherer up/down
+     * Toggle the circle light
      */
     public void toggleLeds() {
         if (ledon) {
@@ -125,21 +118,31 @@ private AxisCamera myCamera = AxisCamera.getInstance();
         }
 
     }
+
+    /**
+     * Turn on the camera circle LED
+     */
     public void LEDSOn() {
         LEDStrand.set(Relay.Value.kForward);
         ledon = true;
     }
-    
+
+    /**
+     * Turn off the camera circle LED
+     */
     public void LEDSOff() {
         LEDStrand.set(Relay.Value.kOff);
         ledon = false;
     }
 
+    /**
+     * Nothing to see here...
+     */
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    
+
     private double scoreRectangularity(ParticleAnalysisReport report) {
         if (report.boundingRectWidth * report.boundingRectHeight != 0) {
             return 100 * report.particleArea / (report.boundingRectWidth * report.boundingRectHeight);
@@ -166,7 +169,7 @@ private AxisCamera myCamera = AxisCamera.getInstance();
         return aspectRatio;
     }
 
-   private double ratioToScore(double ratio) {
+    private double ratioToScore(double ratio) {
         return (Math.max(0, Math.min(100 * (1 - Math.abs(1 - ratio)), 100)));
     }
 
@@ -182,10 +185,13 @@ private AxisCamera myCamera = AxisCamera.getInstance();
 
         return isTarget;
     }
-    public void SmartDashboard(){
-        SmartDashboard.putData("Aimer",this);
+
+    /**
+     *  Callback to put the aimer information on the smartdashboard.  Nothing
+     * in here yet.
+     */
+    public void SmartDashboard() {
+        SmartDashboard.putData("Aimer", this);
     }
 
-
-    
 }

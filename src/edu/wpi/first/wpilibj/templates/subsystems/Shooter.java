@@ -5,7 +5,6 @@
 package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
@@ -18,7 +17,6 @@ import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import java.util.Timer;
 
-
 /**
  *
  * @author 997robotics1
@@ -27,17 +25,29 @@ public class Shooter extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    private PIDController myPIDController;
-    private Victor myVictor;
-    private Encoder myEncoder;
-    private DigitalInput limitSwitch;
-    private Solenoid mySolenoid;
-    private DigitalInput limitSwitch2;
+    private final PIDController myPIDController;
+    private final Victor myVictor;
+    private final Encoder myEncoder;
+    private final DigitalInput limitSwitch;
+    private final Solenoid mySolenoid;
+    private final DigitalInput limitSwitch2;
     private boolean isEnabled;
-    private Timer limitSwitchChecker = new Timer();
-    public boolean isPrepped;
-   
+    private final Timer limitSwitchChecker = new Timer();
 
+    /**
+     * global variable to indicate if we are ready to fire
+     */
+    public boolean isPrepped;
+
+    /**
+     *
+     * @param victorSlot
+     * @param encoderSlot1
+     * @param encoderSlot2
+     * @param limitswitchslot
+     * @param limitswitchslot2
+     * @param solenoidslot
+     */
     public Shooter(int victorSlot, int encoderSlot1, int encoderSlot2, int limitswitchslot, int limitswitchslot2, int solenoidslot) {
         myVictor = new Victor(victorSlot);
         LiveWindow.addActuator("Shooter", "Winch", myVictor);
@@ -45,7 +55,7 @@ public class Shooter extends Subsystem {
         myEncoder.start();
         myEncoder.reset();
         LiveWindow.addSensor("Shooter", "Encoder", myEncoder);
-        
+
         limitSwitch = new DigitalInput(limitswitchslot);
         LiveWindow.addSensor("Shooter", "Limit Switch", limitSwitch);
         limitSwitch2 = new DigitalInput(limitswitchslot2);
@@ -60,6 +70,9 @@ public class Shooter extends Subsystem {
         // limitSwitchChecker.scheduleAtFixedRate(checkLimitSwitch, 0, 5);
     }
 
+    /**
+     *  Simple method to run the winch until the limit switch is tripped
+     */
     public void retractWinch() {
         if (!getLimitSwitch()) {
             myVictor.set(1);
@@ -68,48 +81,79 @@ public class Shooter extends Subsystem {
         }
     }
 
+    /**
+     *  stop the winch
+     */
     public void stopWinch() {
         myVictor.set(0);
     }
 
+    /**
+     * Set the winch setpoint for the release point for the winch out.
+     * @param setpoint
+     */
     public void setSetpoint(double setpoint) {
         myPIDController.setSetpoint(setpoint);
     }
 
+    /**
+     *  Latch the catapult in the down position
+     */
     public void latch() {
         mySolenoid.set(true);
     }
 
+    /**
+     * unlatch (fire) the catapult and then reset the LEDs to the alliance color
+     */
     public void unLatch() {
         mySolenoid.set(false);
         CommandBase.myLED.AllOff();
-        if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed){
-        CommandBase.myLED.redON();
-        } else { 
-        CommandBase.myLED.blueOn();
+        if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed) {
+            CommandBase.myLED.redON();
+        } else {
+            CommandBase.myLED.blueOn();
         }
     }
 
+    /**
+     *
+     */
     public void enable() {
         myPIDController.enable();
         isEnabled = true;
     }
 
+    /**
+     *
+     */
     public void disable() {
         myPIDController.disable();
         isEnabled = false;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean getPIDFin() {
         return myPIDController.onTarget();
     }
 
+    /**
+     *
+     */
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
 
     private boolean lastTime;
+
+    /**
+     *
+     * @return
+     */
     public boolean getLimitSwitch() {
         boolean value = (!limitSwitch.get() || !limitSwitch2.get());
         if (value && !lastTime) {
@@ -118,14 +162,26 @@ public class Shooter extends Subsystem {
         lastTime = value;
         return value;
     }
+
+    /**
+     *
+     * @return
+     */
     public boolean getRawLimit1() {
         return !limitSwitch.get();
     }
+
+    /**
+     *
+     * @return
+     */
     public boolean getRawLimit2() {
         return !limitSwitch2.get();
     }
-    
 
+    /**
+     *
+     */
     public void SmartDashboard() {
         SmartDashboard.putData("Shooter", this);
         SmartDashboard.putBoolean("Shooter limit switch", getLimitSwitch());
@@ -136,28 +192,29 @@ public class Shooter extends Subsystem {
         SmartDashboard.putBoolean("limit switch 2", getRawLimit2());
     }
 
+    /**
+     *
+     */
     public void extendWinch() {
-       if (!(getEncoder()>RobotMap.ShooterUnwoundLocation+500)){
-               myVictor.set(-1);
-       }else{
-           myVictor.set(0);
-       }
+        if (!(getEncoder() > RobotMap.ShooterUnwoundLocation + 500)) {
+            myVictor.set(-1);
+        } else {
+            myVictor.set(0);
+        }
     }
 
+    /**
+     *
+     */
     public void resetEncoder() {
         myEncoder.reset();
     }
 
+    /**
+     *
+     * @return
+     */
     public double getEncoder() {
         return myEncoder.get();
     }
-    //Epublic boolean under200(){
-      //  if (myEncoder.get()> 200){
-        //    return false;
-        //} else if(myEncoder.get() < 200){
-        //return true;
-    //}
-    //    else return true;
-    //}
 }
-    

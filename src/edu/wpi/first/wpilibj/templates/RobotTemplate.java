@@ -26,24 +26,12 @@ public class RobotTemplate extends IterativeRobot {
     Command autonomousCommand;
 
     /**
-     * Utility function to set the color of the LED's on the robot
-     * to match the team's alliance color.
-     */
-        public void setLedColor() {
-        if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed) {
-            CommandBase.myLED.redON();
-        } else {
-            CommandBase.myLED.blueOn();
-        }
-    }
-
-    /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
         // instantiate the command used for the autonomous period
-        setLedColor();
+        CommandBase.myLED.setAllianceLedColor();
 
         autonomousCommand = new DriveToUltrasonicThenFIre();
 
@@ -58,7 +46,7 @@ public class RobotTemplate extends IterativeRobot {
         // schedule the autonomous command (example)
         autonomousCommand.start();
 
-        setLedColor();
+        CommandBase.myLED.setAllianceLedColor();
     }
 
     /**
@@ -72,7 +60,7 @@ public class RobotTemplate extends IterativeRobot {
      *  carry out functions that need to occur at the end of autonomous 
      */
     public void disabledInit() {
-        setLedColor();
+        CommandBase.myLED.setAllianceLedColor();
     }
 
     /**
@@ -85,7 +73,7 @@ public class RobotTemplate extends IterativeRobot {
         // this line or comment it out.
         autonomousCommand.cancel();
 
-        setLedColor();
+        CommandBase.myLED.setAllianceLedColor();
         CommandBase.subGatherer.retractGatherer();
         CommandBase.subShooter.unLatch();
     }
@@ -110,7 +98,6 @@ public class RobotTemplate extends IterativeRobot {
      *  smartdashboard.
      */
     public void SmartDashboard() {
-        //  CommandBase.myAimer.SmartDashboard();
         CommandBase.oi.SmartDashboard();
         CommandBase.subCompressor.SmartDashboard();
         CommandBase.subDriveTrain.SmartDashboard();

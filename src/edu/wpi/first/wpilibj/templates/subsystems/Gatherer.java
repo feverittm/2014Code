@@ -6,12 +6,11 @@
 package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import java.util.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.templates.RobotMap;
+import java.util.Timer;
 import java.util.TimerTask;
 
 /**
@@ -22,8 +21,8 @@ public class Gatherer extends Subsystem {
 
     private boolean isExtended; // is the gatherer down or up?
     private boolean isOn; // is the gatherer roller on?
-    private Victor myVictor;
-    private DoubleSolenoid Actuator;
+    private final Victor myVictor;
+    private final DoubleSolenoid Actuator;
 
     /**
      * Create a version of the standard FRC timer class. Timer resolution is in

@@ -6,8 +6,10 @@
 package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalOutput;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
+import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 /**
  *
@@ -21,12 +23,31 @@ public class LEDSub extends Subsystem {
     DigitalOutput blueSolenoid;
     DigitalOutput greenSolenoid;
 
+    /**
+     *  Define connections for the LED subsystem
+     */
     public LEDSub() {
     greenSolenoid = new DigitalOutput(RobotMap.greenLightSlot);
     redSolenoid = new DigitalOutput(RobotMap.redLightSlot);
     blueSolenoid = new DigitalOutput(RobotMap.blueLightSlot);
     }
     private boolean b;
+
+    /**
+     * Utility function to set the color of the LED's on the robot
+     * to match the team's alliance color.
+     */
+    public void setAllianceLedColor() {
+        if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed) {
+            CommandBase.myLED.redON();
+        } else {
+            CommandBase.myLED.blueOn();
+        }
+    }
+    
+    /**
+     * Toggle the Blue LEDS on/off
+     */
     public void ToggleBlue() {
        if (b){
            b = false;
@@ -37,6 +58,10 @@ public class LEDSub extends Subsystem {
        }
     }
     private boolean r;
+
+    /**
+     * Toggle the Red LEDS on/off
+     */
     public void ToggleRed() {
        if (r){
            r = false;
@@ -47,21 +72,33 @@ public class LEDSub extends Subsystem {
        }
     }
     private boolean g;
+
+    /**
+     * Toggle the Green LEDS on/off
+     */
     public void ToggleGreen() {
        if (g){
-           g = true;
+           g = false;
            greenSolenoid.set(true);
        } else if (!g){
-           g = false;
+           g = true;
            greenSolenoid.set(false);
        }
     }
+
+    /**
+     * turn of Red LEDs
+     */
     public void redON(){
         r = true;
         blueSolenoid.set(false);
         greenSolenoid.set(false);
         redSolenoid.set(true);
     }
+
+    /**
+     * turn on Blue LEDs
+     */
     public void blueOn() {
         b = true;
         
@@ -70,6 +107,9 @@ public class LEDSub extends Subsystem {
         blueSolenoid.set(true);
     }
 
+    /**
+     * Turn all the LEDs off
+     */
     public void AllOff() {
         r = false;
         redSolenoid.set(false);
@@ -79,7 +119,9 @@ public class LEDSub extends Subsystem {
         greenSolenoid.set(false); 
     }
     
-    
+    /**
+     * Nothing here
+     */
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
