@@ -13,6 +13,12 @@ public class DriveToSetpoint extends CommandBase {
 
     double Setpoint;
 
+    /**
+     * Constructor for autonomous routine to drive to the location in front
+     * of the goal in order to shoot our autonomous ball.
+     *
+     * @param setpoint
+     */
     public DriveToSetpoint(double setpoint) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -20,36 +26,50 @@ public class DriveToSetpoint extends CommandBase {
         Setpoint = setpoint;
     }
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
+    /**
+     *  Setup to drive to the optimal distance in front of the goal to
+     *  shoot our autonomous ball.
+     */
+        protected void initialize() {
         subDriveTrain.resetEncoders();
         subDriveTrain.resetGyro();
     }
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    /**
+     *  Drive using the gyro to drive straight
+     */
+        protected void execute() {
         subDriveTrain.SetLeft(.5 - gyroAdjust());
         subDriveTrain.SetRight(.5 + gyroAdjust());
     }
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    /**
+     * Determine if we have reached the setpoint.  This is a simple encoder
+     * check routine and does not use PID.
+     * @return are we there yet?
+     */
+        protected boolean isFinished() {
         return subDriveTrain.getAverageEncoders() > Setpoint;
     }
 
-    // Called once after isFinished returns true
-    protected void end() {
-        subDriveTrain.SetLeft(0);
-        subDriveTrain.SetRight(0);
+    /**
+     *
+     */
+        protected void end() {
+        subDriveTrain.Stop();
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-        subDriveTrain.SetLeft(0);
-        subDriveTrain.SetRight(0);
+    /**
+     * Stop at location
+     */
+        protected void interrupted() {
+        subDriveTrain.Stop();
     }
 
+    /**
+     * use the gyro to determine a factor that is used to drive straight.
+     * @return correction factor
+     */
     private double gyroAdjust() {
         double i = subDriveTrain.getGyro() / 10;
         if (Math.abs(i) > .1) {

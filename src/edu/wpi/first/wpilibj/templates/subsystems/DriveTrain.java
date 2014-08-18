@@ -82,6 +82,14 @@ public class DriveTrain extends Subsystem {
     }
 
     /**
+     * Stop the drivetrain
+     */
+    public void Stop() {
+        rightMotor.set(0);
+        leftMotor.set(0);
+    }
+    
+    /**
      * What do we want the robot to do if it is not in another command loop. We
      * want it to be ready to drive by the joysticks.
      */
