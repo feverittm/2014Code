@@ -53,7 +53,7 @@ public class DriveToSetpoint extends CommandBase {
     }
 
     /**
-     *
+     * stop when we get to the shooting location
      */
         protected void end() {
         subDriveTrain.Stop();

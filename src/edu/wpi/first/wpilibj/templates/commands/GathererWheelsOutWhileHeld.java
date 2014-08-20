@@ -11,34 +11,46 @@ package edu.wpi.first.wpilibj.templates.commands;
  */
 public class GathererWheelsOutWhileHeld extends CommandBase {
     
+    /**
+     * nothing extra here.
+     */
     public GathererWheelsOutWhileHeld() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
         requires(subGatherer);
     }
 
-    // Called just before this Command runs the first time
+    /**
+     * nothing to do here...
+     */
     protected void initialize() {
         
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    /**
+     * turn the gatherer on in reverse - push out a ball 
+     */
     protected void execute() {
     subGatherer.turnOnGatherReverse();
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    /**
+     * nothing to do here, we are never done.  this is controlled
+     * by a operator toggle
+     * @return false
+     */ 
     protected boolean isFinished() {
         return false;
     }
 
-    // Called once after isFinished returns true
+    /**
+     * shut off the gatherer when the comment is stopped by the operator.
+     */
     protected void end() {
         subGatherer.turnOffGather();
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    /**
+     * if the command is interrupted, then stop the gatherer.
+     */
     protected void interrupted() {
     subGatherer.turnOffGather();
     }

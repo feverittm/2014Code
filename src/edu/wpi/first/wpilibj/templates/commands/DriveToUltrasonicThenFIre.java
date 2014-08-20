@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class DriveToUltrasonicThenFIre extends CommandGroup {
     
+    /**
+     * Autonomous Routine: (Ultrasonic Version)
+    */
     public DriveToUltrasonicThenFIre() {
        // addSequential(new extendGathererOnly());
         addSequential(new Winch1AndAHalfS());

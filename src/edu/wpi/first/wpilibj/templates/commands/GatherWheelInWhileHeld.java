@@ -11,34 +11,52 @@ package edu.wpi.first.wpilibj.templates.commands;
  */
 public class GatherWheelInWhileHeld extends CommandBase {
     
+    /**
+     * Turn on gatherer without pulling up the gatherer bar
+     */
     public GatherWheelInWhileHeld() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
         requires(subGatherer);
     }
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
+    /**
+     * Nothing to do here...
+     */
+        protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    /**
+     *  Turn on the gatherer motor
+     */
+        protected void execute() {
         subGatherer.turnOnGather();
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+
+    /**
+     *
+     * @return
+     */
+        protected boolean isFinished() {
         return false;
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+
+    /**
+     *
+     */
+        protected void end() {
         subGatherer.turnOffGather();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+
+    /**
+     *
+     */
+        protected void interrupted() {
     subGatherer.turnOffGather();
     }
 }

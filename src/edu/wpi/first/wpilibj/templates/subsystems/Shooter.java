@@ -23,8 +23,6 @@ import java.util.Timer;
  */
 public class Shooter extends Subsystem {
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
     private final PIDController myPIDController;
     private final Victor myVictor;
     private final Encoder myEncoder;
@@ -71,7 +69,7 @@ public class Shooter extends Subsystem {
     }
 
     /**
-     *  Simple method to run the winch until the limit switch is tripped
+     * Simple method to run the winch until the limit switch is tripped
      */
     public void retractWinch() {
         if (!getLimitSwitch()) {
@@ -82,7 +80,7 @@ public class Shooter extends Subsystem {
     }
 
     /**
-     *  stop the winch
+     * stop the winch
      */
     public void stopWinch() {
         myVictor.set(0);
@@ -90,6 +88,7 @@ public class Shooter extends Subsystem {
 
     /**
      * Set the winch setpoint for the release point for the winch out.
+     *
      * @param setpoint
      */
     public void setSetpoint(double setpoint) {
@@ -97,7 +96,7 @@ public class Shooter extends Subsystem {
     }
 
     /**
-     *  Latch the catapult in the down position
+     * Latch the catapult in the down position
      */
     public void latch() {
         mySolenoid.set(true);
@@ -117,7 +116,7 @@ public class Shooter extends Subsystem {
     }
 
     /**
-     *
+     * enable the PID to
      */
     public void enable() {
         myPIDController.enable();
@@ -125,7 +124,7 @@ public class Shooter extends Subsystem {
     }
 
     /**
-     *
+     * turn off the PID controller
      */
     public void disable() {
         myPIDController.disable();
@@ -133,6 +132,7 @@ public class Shooter extends Subsystem {
     }
 
     /**
+     * determine if the winch is at the right spot
      *
      * @return
      */
@@ -141,7 +141,7 @@ public class Shooter extends Subsystem {
     }
 
     /**
-     *
+     * Noting to do here...
      */
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -151,6 +151,7 @@ public class Shooter extends Subsystem {
     private boolean lastTime;
 
     /**
+     * check the limit switch to see if it the catapult is down
      *
      * @return
      */
@@ -164,6 +165,7 @@ public class Shooter extends Subsystem {
     }
 
     /**
+     * Check limit switch 1
      *
      * @return
      */
@@ -172,6 +174,7 @@ public class Shooter extends Subsystem {
     }
 
     /**
+     * Check limit switch 2
      *
      * @return
      */
@@ -180,7 +183,8 @@ public class Shooter extends Subsystem {
     }
 
     /**
-     *
+     * add a number of indicators to the smart dashboard that show the status of
+     * the catapult
      */
     public void SmartDashboard() {
         SmartDashboard.putData("Shooter", this);
@@ -193,7 +197,7 @@ public class Shooter extends Subsystem {
     }
 
     /**
-     *
+     * Extend winch to an encoder location.
      */
     public void extendWinch() {
         if (!(getEncoder() > RobotMap.ShooterUnwoundLocation + 500)) {
@@ -204,13 +208,14 @@ public class Shooter extends Subsystem {
     }
 
     /**
-     *
+     * reset the encoder attached to the winch gearbox
      */
     public void resetEncoder() {
         myEncoder.reset();
     }
 
     /**
+     * return the winch encoder value.
      *
      * @return
      */
